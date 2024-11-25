@@ -4,19 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Genogram.Domain.Entities
+namespace Genogram.Domain.DTOs
 {
-    public class Relationship
+    public class RelationshipDto
     {
-        public int Id { get; set; }
         public int ChildId { get; set; }
-        public Child Child { get; set; } 
-
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
         public string RelationshipType { get; set; } = null!;
-        public string? Email { get; set; } 
-        public string? PhoneNumber { get; set; } 
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
         public bool IsPrimaryContact { get; set; }
     }
 }

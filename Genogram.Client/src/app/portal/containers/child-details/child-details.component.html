@@ -1,61 +1,52 @@
-
-<div class="header-toolbar">
-    <mat-toolbar>
-      <span class="title">Genogram</span>
-    </mat-toolbar>
-  </div>
-  <div class="user-details-container mat-elevation-z4">
-    <mat-card class="profile-card">
-      <div class="header">
-        <div class="profile-image">
-          <img src="assets/images/Child1.png" alt="Child" />
-        </div>
-        <div class="info">
-          <p>
-            <span class="icon-text">
-              <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child.name }}
-            </span>
-            <br />
-            <span class="icon-text">
-              <mat-icon>address</mat-icon> <strong>Address:</strong> {{ child.address }}
-            </span>
-            <br />
-            <span class="icon-text">
-              <mat-icon>my_location</mat-icon> <strong>Link:</strong>
-              <a href="" target="_blank">In Google Maps</a>
-            </span>
-          </p>
-        </div>
-        <div class="details">
-          <p>
-            <span class="icon-text">
-              <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child.nationality }}
-            </span>
-            <br />
-            <span class="icon-text">
-              <mat-icon>language</mat-icon> <strong>Language:</strong> {{ child.language }}
-            </span>
-            <br />
-            <span class="icon-text">
-              <mat-icon>calendar_today</mat-icon> <strong>DOB:</strong> {{ child.dateOfBirth }}
-            </span>
-          </p>
-        </div>
+<div class="main-container">
+  <mat-card class="profile-card">
+    <div class="header">
+      <div class="profile-image">
+        <img src="assets/images/Child1.png" alt="Child" />
       </div>
-    </mat-card>
-   
+      <div class="info">
+        <p>
+          <span class="icon-text">
+            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child.name }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>address</mat-icon> <strong>Address:</strong> {{ child.address }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>my_location</mat-icon> <strong>Link:</strong>
+            <a href="" target="_blank">In Google Maps</a>
+          </span>
+        </p>
+      </div>
+      <div class="details">
+        <p>
+          <span class="icon-text">
+            <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child.nationality }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>language</mat-icon> <strong>Language:</strong> {{ child.language }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>calendar_today</mat-icon> <strong>DOB:</strong> {{ child.dateOfBirth }}
+          </span>
+        </p>
+      </div>
+    </div>
 
+    <mat-tab-group>
+      <mat-tab label="Guardians" [disabled]="activeTab !== 2">
+        <app-relationship-table></app-relationship-table>
+      </mat-tab>
+      <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
+      <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
+      
+      <mat-tab label="Documents" [disabled]="activeTab !== 3"></mat-tab>
+      <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
+      <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>
+    </mat-tab-group>
     
-  </div>
 
-  <mat-tab-group>
-    <mat-tab label="Admissions"></mat-tab>
-    <mat-tab label="Counselling"></mat-tab>
-    <mat-tab label="Guardians"><app-relationship-table></app-relationship-table></mat-tab>
-    <mat-tab label="Documents"></mat-tab>
-    <mat-tab label="Efforts"></mat-tab>
-    <mat-tab label="Mail"></mat-tab>
-  </mat-tab-group>
-  
-  
-  

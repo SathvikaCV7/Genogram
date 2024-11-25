@@ -19,6 +19,7 @@ import { RelationshipTableComponent } from "../relationship-table/relationship-t
 export class ChildDetailsComponent implements OnInit {
   childDetailsService=inject(ChildDetailsService);
   child:any;
+  activeTab = 2; 
   constructor(){
     
   }

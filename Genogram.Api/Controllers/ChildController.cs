@@ -39,23 +39,6 @@ namespace Genogram.Api.Controllers
             return Ok(child);
         }
 
-        //[HttpPost("AddRelationship")]
-        //public async Task<ActionResult> AddRelationship(Relationship relationship)
-        //{
-        //    var existingPrimaryContact = _context.Relationships
-        //        .Where(r => r.ChildId == relationship.ChildId && r.IsPrimaryContact)
-        //        .FirstOrDefault();
-
-        //    if (relationship.IsPrimaryContact && existingPrimaryContact != null)
-        //    {
-        //        return BadRequest("There can only be one primary contact.");
-        //    }
-
-        //    _context.Relationships.Add(relationship);
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok(relationship);
-        //}
 
     }
 }

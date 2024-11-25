@@ -1,3 +1,4 @@
+using Genogram.Application.Mappings;
 using Genogram.Application.Repository;
 using Genogram.Domain.Interfaces.IRepository;
 using Genogram.Infrastructure.Data;
@@ -17,9 +18,15 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -36,8 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseCors("AllowSpecificOrigin");  // Move this before app.UseAuthorization();
 app.UseHttpsRedirection();
-app.UseCors("AllowSpecificOrigin");
 app.UseAuthorization();
 
 app.MapControllers();

@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { RelationshipTableComponent } from "../relationship-table/relationship-table.component";
+import { Relationship } from '../../../core/models/Relationship';
 
 @Component({
   selector: 'app-child-details',
@@ -20,13 +21,16 @@ export class ChildDetailsComponent implements OnInit {
   childDetailsService=inject(ChildDetailsService);
   child:any;
   activeTab = 2; 
+  relationships: Relationship[] = []; // Initialize with an empty array
   constructor(){
     
   }
   ngOnInit(): void {
     debugger;
     this.childDetailsService.getChild().subscribe((child)=>{
-      this.child=child;
+      this.child = child;
+      this.relationships = child.relationships || [];
+      console.log(this.relationships);
       debugger;
     });
   }

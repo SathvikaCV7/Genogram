@@ -1,0 +1,11 @@
+.button-group {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    gap: 10px;              /* Adds space between the buttons */
+    margin: 20px;    /* Adds some spacing between the buttons and the table */
+  }
+  mat-table{
+    padding: 20px;
+    background-color: rgb(228, 164, 197);
+  }

@@ -1,0 +1,79 @@
+.user-details-container {
+    max-width: 100%;
+    margin: 20px auto;
+    
+  }
+  
+  mat-card {
+    padding: 20px;
+    background-color: rgb(228, 164, 197);
+    
+   
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .profile-image img {
+    width: 125px;
+    height: 125px;
+    // border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .info {
+    flex: 1;
+    margin-left: 70px;
+  }
+  
+  .details {
+    flex: 1;
+  }
+  
+  
+  .info p, 
+  .details p {
+    margin: 15px 0; 
+  }
+  
+  
+  .info strong, 
+  .details strong {
+    display: inline-block;
+  }
+  
+  
+  mat-tab-group {
+    margin-top: 20px;
+  }
+  
+  .icon-text {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    margin-bottom: 8px; 
+  }
+  
+  .icon-text mat-icon {
+    font-size: 18px; 
+    color: #555; 
+  }
+  
+  strong {
+    font-weight: bold;
+    margin-left: 4px; 
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px; /* Space between buttons */
+    margin-top: 16px; /* Space from the card */
+  }
+  
+  button {
+    min-width: 120px; /* Ensures buttons are of consistent size */
+  }
+  

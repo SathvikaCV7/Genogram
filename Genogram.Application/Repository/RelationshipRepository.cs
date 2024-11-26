@@ -19,14 +19,7 @@ namespace Genogram.Application.Repository
             _context = context;
         }
 
-        public async Task<Relationship?> GetPrimaryContactAsync(int childId)
-        {
-            return await _context.Relationships
-                .Where(r => r.ChildId == childId && r.IsPrimaryContact)
-                .FirstOrDefaultAsync();
-        }
-
-        public async Task<Relationship?> UpdateRelationshipAsync(Relationship updatedRelationship)
+        public async Task<Relationship?> UpdateAsync(Relationship updatedRelationship)
         {
             var existingRelationship = await _context.Relationships
                 .FirstOrDefaultAsync(r => r.Id == updatedRelationship.Id);
@@ -35,7 +28,8 @@ namespace Genogram.Application.Repository
             {
                 return null;
             }
-
+            existingRelationship.FirstName = updatedRelationship.FirstName;
+            existingRelationship.LastName = updatedRelationship.LastName;
             existingRelationship.RelationshipType = updatedRelationship.RelationshipType;
             existingRelationship.IsPrimaryContact = updatedRelationship.IsPrimaryContact;
             existingRelationship.Email = updatedRelationship.Email;
@@ -43,6 +37,20 @@ namespace Genogram.Application.Repository
 
 
             return existingRelationship;
+        }
+
+
+        public async Task<List<Relationship>> GetByChildIdAsync(int childId)
+        {
+            return await _context.Relationships
+                                 .Where(r => r.ChildId == childId)
+                                 .ToListAsync();
+        }
+
+        public async Task UpdateRangeAsync(IEnumerable<Relationship> relationships)
+        {
+            _context.Relationships.UpdateRange(relationships);
+            await _context.SaveChangesAsync();
         }
     }
 

@@ -9,7 +9,10 @@ namespace Genogram.Domain.Interfaces.IRepository
 {
     public interface IRelationshipRepository: IRepository<Relationship>
     {
-        Task<Relationship?> GetPrimaryContactAsync(int childId);
-        public  Task<Relationship?> UpdateRelationshipAsync(Relationship updatedRelationship);
+        public  Task<Relationship?> UpdateAsync(Relationship updatedRelationship);
+
+        public Task<List<Relationship>> GetByChildIdAsync(int childId);
+
+        public Task UpdateRangeAsync(IEnumerable<Relationship> relationships);
     }
 }

@@ -43,6 +43,11 @@ export class RelationshipTableComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         debugger;
+        if (result.isPrimaryContact) {
+          this.dataSource = this.dataSource.map(rel =>
+            rel.id === result.id ? result : { ...rel, isPrimaryContact: false }
+          );
+        }
         result.childId=this.childId;
         this.relationshipService.addRelationship(result).subscribe((response)=>{
           console.log(response);
@@ -59,6 +64,7 @@ export class RelationshipTableComponent {
 
   onEdit(relationship: Relationship): void {
     const originalData = { ...relationship }; 
+    this.id=relationship.id;
     const dialogRef = this.dialog.open(AddGuardianComponent, {
       width: '450px',
       data: {
@@ -79,10 +85,15 @@ export class RelationshipTableComponent {
           'phoneNumber'
         ];
         const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
-      
           debugger;   
         if (isChanged) {
+          if (result.isPrimaryContact) {
+            this.dataSource = this.dataSource.map(rel =>
+              rel.id === result.id ? result : { ...rel, isPrimaryContact: false }
+            );
+          }
           result.id = this.id;
+          result.childId=this.childId;
           this.relationshipService.updateRelationship(result).subscribe((response) => {
             console.log(response);
             const index = this.dataSource.findIndex(item => item.id === result.id);

@@ -45,8 +45,8 @@ export class AddGuardianComponent implements OnInit {
       firstName: [this.isEditMode ? this.data.relationship.firstName : '', Validators.required],
       lastName: [this.isEditMode ? this.data.relationship.lastName : '', Validators.required],
       relationshipType: [this.isEditMode ? this.data.relationship.relationshipType : '', Validators.required],
-      email: [this.isEditMode ? this.data.relationship.email : '', [Validators.required, Validators.email]],
-      phoneNumber: [this.isEditMode ? this.data.relationship.phoneNumber : '', Validators.required],
+      email: [this.isEditMode ? this.data.relationship.email : '', [ Validators.email]],
+      phoneNumber: [this.isEditMode ? this.data.relationship.phoneNumber : ''],
       isPrimaryContact: [this.isEditMode ? this.data.relationship.isPrimaryContact : false],
       remarks: [this.isEditMode ? this.data.relationship.remarks : '']
     });
@@ -61,7 +61,7 @@ export class AddGuardianComponent implements OnInit {
       this.dialogRef.close(this.form.value);
     }
   }
-  
+
   isOptionDisabled(option: string): boolean {
     const currentRelationships = this.relationships;
     if ((option === 'Mother' || option === 'Father') && 

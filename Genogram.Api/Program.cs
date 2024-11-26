@@ -1,6 +1,8 @@
 using Genogram.Application.Mappings;
 using Genogram.Application.Repository;
+using Genogram.Application.Services;
 using Genogram.Domain.Interfaces.IRepository;
+using Genogram.Domain.Interfaces.IServices;
 using Genogram.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +35,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IChildRepository, ChildRepository>();
 builder.Services.AddScoped<IRelationshipRepository, RelationshipRepository>();
+builder.Services.AddScoped<IRelationshipService, RelationshipService>();
 
 var app = builder.Build();
 

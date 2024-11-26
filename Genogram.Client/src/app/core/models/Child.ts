@@ -8,7 +8,7 @@ export interface Child {
     language?: string;
     dateOfBirth?: Date;
     imagePath?: string; 
-    relationships?: Relationship[]; 
+    relationships?: { $values: Relationship[] };
   }
   
   

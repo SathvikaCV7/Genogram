@@ -23,9 +23,7 @@ namespace Genogram.Api.Controllers
         [HttpGet("GetByChildId/{childId}")]
         public async Task<ActionResult<IEnumerable<Relationship>>> GetRelationshipsByChildId(int childId)
         {
-           
-            var relationships = await _unitOfWork.Relationships.GetAllAsync(r => r.ChildId == childId,r => r.Child 
-            );
+            var relationships = await _unitOfWork.Relationships.GetAllAsync(r => r.ChildId == childId,r => r.Child);
 
             if (!relationships.Any())
                 return NotFound("No relationships found for the given child.");
@@ -38,10 +36,8 @@ namespace Genogram.Api.Controllers
         public async Task<ActionResult<Relationship>> GetRelationshipById(int id)
         {
             var relationship = await _unitOfWork.Relationships.GetByIdAsync(r => r.Id == id);
-
             if (relationship == null)
                 return NotFound("Relationship not found.");
-
             return Ok(relationship);
         }
 
@@ -50,12 +46,23 @@ namespace Genogram.Api.Controllers
         [HttpPost("Add")]
         public async Task<ActionResult> AddRelationship(RelationshipDto relationshipDto)
         {
+            var relationship = _mapper.Map<Relationship>(relationshipDto);
+            await _unitOfWork.Relationships.AddAsync(relationship);      
+            return Ok(new { message = "Success" });
+
+        }
+        [HttpPost("Edit")]
+        public async Task<ActionResult> EditRelationship(RelationshipDto relationshipDto)
+        {
 
             var relationship = _mapper.Map<Relationship>(relationshipDto);
-            await _unitOfWork.Relationships.AddAsync(relationship);
+            await _unitOfWork.Relationships.UpdateRelationshipAsync(relationship);
             await _unitOfWork.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetRelationshipById), new { id = relationship.Id }, relationship);
+            return Ok(new { message = "Success" });
+
         }
+
+
 
     }
 }

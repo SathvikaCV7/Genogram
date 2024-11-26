@@ -7,11 +7,11 @@
       <div class="info">
         <p>
           <span class="icon-text">
-            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child.name }}
+            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child?.name }}
           </span>
           <br />
           <span class="icon-text">
-            <mat-icon>address</mat-icon> <strong>Address:</strong> {{ child.address }}
+            <mat-icon>address</mat-icon> <strong>Address:</strong> {{ child?.address }}
           </span>
           <br />
           <span class="icon-text">
@@ -23,15 +23,15 @@
       <div class="details">
         <p>
           <span class="icon-text">
-            <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child.nationality }}
+            <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child?.nationality }}
           </span>
           <br />
           <span class="icon-text">
-            <mat-icon>language</mat-icon> <strong>Language:</strong> {{ child.language }}
+            <mat-icon>language</mat-icon> <strong>Language:</strong> {{ child?.language }}
           </span>
           <br />
           <span class="icon-text">
-            <mat-icon>calendar_today</mat-icon> <strong>DOB:</strong> {{ child.dateOfBirth }}
+            <mat-icon>calendar_today</mat-icon> <strong>DOB:</strong> {{ child?.dateOfBirth }}
           </span>
         </p>
       </div>
@@ -39,11 +39,10 @@
 
     <mat-tab-group>
       <mat-tab label="Guardians" [disabled]="activeTab !== 2">
-        <app-relationship-table></app-relationship-table>
+        <app-relationship-table [relationships]="relationships" [childId]="childId"></app-relationship-table>
       </mat-tab>
       <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
       <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
-      
       <mat-tab label="Documents" [disabled]="activeTab !== 3"></mat-tab>
       <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
       <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>

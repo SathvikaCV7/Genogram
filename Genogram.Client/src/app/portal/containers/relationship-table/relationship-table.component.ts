@@ -1,32 +1,101 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { NameOf } from '../../../core/Utilities/name-of-helper';
+import { Relationship } from '../../../core/models/Relationship';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddGuardianComponent } from '../add-guardian/add-guardian.component';
+import { RelationshipTypes } from '../../../core/Enums/RelationshipTypes';
+import { RelationshipService } from '../../../core/services/relationship.service';
 
 @Component({
   selector: 'app-relationship-table',
   standalone: true,
-  imports: [MatTableModule,MatCheckboxModule,MatButtonModule],
+  imports: [MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule],
   templateUrl: './relationship-table.component.html',
   styleUrl: './relationship-table.component.scss'
 })
 export class RelationshipTableComponent {
-  displayedColumns: string[] = ['firstName', 'lastName', 'relationship', 'phone', 'mail', 'mailContact', 'remarks'];
-  dataSource = [
-    { firstName: 'Anna', lastName: 'Hug-Meier', relationship: 'Mother', phone: '044 745 17 77', mail: 'anna.hug@mail.com', mailContact: true, remarks: '' },
-    { firstName: 'Herbert', lastName: 'Hug', relationship: 'Father', phone: '044 745 17 77', mail: 'herbert.hug@mail.com', mailContact: false, remarks: '' },
-    { firstName: 'Hilde', lastName: 'Meier', relationship: 'Grandmother', phone: '044 746 13 23', mail: '', mailContact: false, remarks: '' },
-    { firstName: 'Petra', lastName: 'Sturzenegger', relationship: 'Kita Leiterin', phone: '044 747 18 28', mail: 'p.sturzenegger@kita.com', mailContact: false, remarks: '' },
-    { firstName: 'Kevin', lastName: 'Hug', relationship: 'Brother', phone: '', mail: '', mailContact: false, remarks: '' }
-  ];
+  constructor(public dialog: MatDialog) { }
+  @Input() relationships: Relationship[] = [];
+  @Input() childId: number|undefined;
+  displayedColumns: string[] = NameOf.those<Relationship>(['actions','firstName', 'lastName', 'relationshipType', 'phoneNumber', 'email', 'isPrimaryContact', 'remarks']);
+  relationshipService=inject(RelationshipService);
+  id:number|undefined;
+  dataSource: Relationship[] = [];
 
-  onAdd(): void {
-    // Logic for "Add" button
-    console.log("Add button clicked");
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['relationships']) {
+      this.dataSource = this.relationships || [];
+    }
+
   }
-  
+  onAdd(): void {
+    const dialogRef = this.dialog.open(AddGuardianComponent, {
+      width: '450px',
+      data:
+      {
+      relationships: this.relationships,
+      relationshipTypes: Object.values(RelationshipTypes) } // Pass Relationship enum to the dialog
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        debugger;
+        result.childId=this.childId;
+        this.relationshipService.addRelationship(result).subscribe((response)=>{
+          console.log(response);
+        });
+        debugger;
+        this.dataSource = [...this.dataSource, result]; 
+      }
+    });
+  }
+
   onGenogram(): void {
-    // Logic for "Genogram" button
     console.log("Genogram button clicked");
   }
+
+  onEdit(relationship: Relationship): void {
+    const originalData = { ...relationship }; 
+    const dialogRef = this.dialog.open(AddGuardianComponent, {
+      width: '450px',
+      data: {
+        relationship: relationship, 
+        relationshipTypes: Object.values(RelationshipTypes),
+        relationships: this.relationships
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const fieldsToCompare: (keyof Relationship)[] = [
+          'firstName',
+          'lastName',
+          'relationshipType',
+          'isPrimaryContact',
+          'email',
+          'phoneNumber'
+        ];
+        const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
+      
+          debugger;   
+        if (isChanged) {
+          result.id = this.id;
+          this.relationshipService.updateRelationship(result).subscribe((response) => {
+            console.log(response);
+            const index = this.dataSource.findIndex(item => item.id === result.id);
+            if (index !== -1) {
+              this.dataSource[index] = result;
+              this.dataSource = [...this.dataSource];
+            }
+          });
+        } else {
+          console.log('No changes detected, skipping API call.');
+        }
+      }
+    });
+  }
+  
 }

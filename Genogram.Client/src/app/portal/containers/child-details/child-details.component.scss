@@ -12,8 +12,7 @@
 
 /* Card styling */
 mat-card.profile-card {
-  width: 100%;
-  max-width: 900px; /* Limits the width for better layout */
+ width: auto;
   padding: 20px;
   background-color: rgb(228, 164, 197); /* Matches button color */
   border-radius: 10px;

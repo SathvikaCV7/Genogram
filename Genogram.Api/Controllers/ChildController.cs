@@ -22,10 +22,8 @@ namespace Genogram.Api.Controllers
         public async Task<ActionResult<Child>> GetChild(int id)
         {
             var child = await _unitOfWork.Children.GetByIdAsync(c => c.Id == id, c => c.Relationships);
-
             if (child == null)
                 return NotFound();
-
             return child;
         }
 
@@ -35,7 +33,6 @@ namespace Genogram.Api.Controllers
         {
             await _unitOfWork.Children.AddAsync(child);
             await _unitOfWork.SaveChangesAsync();
-
             return Ok(child);
         }
 

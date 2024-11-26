@@ -10,4 +10,6 @@ export interface Relationship {
     email?: string; 
     phoneNumber?: string; 
     isPrimaryContact: boolean;
+    remarks?:string;
+    actions?:string;
   }

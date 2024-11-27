@@ -43,3 +43,8 @@
     flex-grow: 1;
     overflow: auto; /* Ensures the graph does not overflow the container */
   }
+
+  // .node rect {
+  //   fill: unset !important; /* Disable any default fill */
+  // }
+  

@@ -19,7 +19,7 @@ export class ShowGenogramComponent {
   constructor(public dialogRef: MatDialogRef<ShowGenogramComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder) {
-    debugger;
+   
     if (this.data && this.data.relationships) {
       this.relationships = this.data.relationships;
     }
@@ -28,41 +28,62 @@ export class ShowGenogramComponent {
   nodes:any[]=[];
   links:any[]=[];
   relationshipTypeCount: { [key: string]: number } = {};
-
+  parents: any[] = [];
 
   initializeGenogram() {
-    debugger;
    
-    this.nodes.push({ id: 'child', label: this.childName , color: 'lightblue'});
+   
+    this.nodes.push({ id: 'child', label: this.childName , data: { color: 'lightblue' }});
 
     this.relationships.forEach((relationship) => {
       const relationshipType = relationship.relationshipType.toLowerCase();
-      
-      // Ensure unique node ID for each individual with the same relationshipType
-      const nodeId = `${relationshipType}-${relationship.firstName}-${relationship.lastName}`;
-      
-      // Track how many nodes of the same type are created (e.g., multiple "sisters")
+      const nodeId = `${relationshipType}-${relationship.id}`;
       if (!this.relationshipTypeCount[relationshipType]) {
         this.relationshipTypeCount[relationshipType] = 0;
       }
       this.relationshipTypeCount[relationshipType]++;
 
-      // Add the node
+      if(relationshipType=="mother" ||relationshipType=="father" || relationshipType=="grandfather" || relationshipType=="grandmother"){
+        this.parents.push(nodeId);
+      }
       this.nodes.push({
         id: nodeId,  
-        label: `${relationship.firstName} ${relationship.lastName}` 
+        label: `${relationship.firstName} ${relationship.lastName}` ,
+        data: { color: 'lightblue' }
       });
 
-      // Add a link to the 'child'
+
       this.links.push({
         id: `${nodeId}-${this.relationshipTypeCount[relationshipType]}`, 
         source: 'child', 
         target: nodeId, 
-        label: relationship.relationshipType ,
-         color: 'lightblue'
+        label: relationship.relationshipType 
+        
       });
+
+     
     });
+    
+
+   this.relationships.filter((relationship) => 
+      relationship.relationshipType.toLowerCase() === 'sister' || relationship.relationshipType.toLowerCase() === 'brother'
+    ).forEach((relationship)=>{
+      const relationshipType = relationship.relationshipType.toLowerCase();
+      const nodeId = `${relationshipType}-${relationship.id}`;
+      this.parents.forEach((parentNodeId: string)=>{
+        this.links.push({
+          id:`sibling-${nodeId}-${parentNodeId}`,
+          source:parentNodeId,
+          target:nodeId,
+          label:parentNodeId.split('-')[0]
+        })
+
+      })
+
+    })
   }
+
+  
 
   closeGenogram() {
     this.dialogRef.close();

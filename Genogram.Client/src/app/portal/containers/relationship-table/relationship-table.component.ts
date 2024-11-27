@@ -34,7 +34,7 @@ export class RelationshipTableComponent {
   }
   onAdd(): void {
     const dialogRef = this.dialog.open(AddGuardianComponent, {
-      width: '450px',
+      width: '600px',
       data:
       {
       relationships: this.relationships,

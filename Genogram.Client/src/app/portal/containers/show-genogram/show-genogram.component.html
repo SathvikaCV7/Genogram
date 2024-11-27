@@ -9,11 +9,10 @@
     <div class="genogram-graph">
       <ngx-graph
         class="chart-container"
-        [view]="[800, 550]"
+        [view]="[750, 500]"
         [links]="links"
         [nodes]="nodes"
-        layout="dagreCluster"
-      >
+        layout="dagreCluster">
         <ng-template #nodeTemplate let-node>
           <svg:g class="node">
             <svg:rect

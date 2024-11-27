@@ -13,8 +13,8 @@ export class ChildDetailsService {
 
   baseApiUrl= environment.baseApiUrl;
 
-  getChild():Observable<Child>{
-   return  this.http.get<Child>(this.baseApiUrl+"Child/1");
+  getChild(childId:string|null):Observable<Child>{
+   return  this.http.get<Child>(this.baseApiUrl+`Child/${childId}`);
   }
 
 }

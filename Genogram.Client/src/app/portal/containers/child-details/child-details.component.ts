@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RelationshipTableComponent } from "../relationship-table/relationship-table.component";
 import { Relationship } from '../../../core/models/Relationship';
 import { ChildDetailsService } from '../../../core/services/child-details.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-child-details',
@@ -23,13 +24,13 @@ export class ChildDetailsComponent implements OnInit {
   childId:number|undefined;
   activeTab = 2; 
   relationships: Relationship[] = []; 
-selectedTabIndex=2;
-  constructor(){
+  selectedTabIndex=2;
+  constructor(  private route: ActivatedRoute){
     
   }
   ngOnInit(): void {
-    debugger;
-    this.childDetailsService.getChild().subscribe((child)=>{
+    const childId = this.route.snapshot.paramMap.get('childId')|| '1';
+    this.childDetailsService.getChild(childId).subscribe((child)=>{
       this.child = child;
       this.childId=child.id;
       this.relationships = child.relationships?.$values || [];
@@ -37,10 +38,6 @@ selectedTabIndex=2;
       debugger;
     });
   }
-
-  
-  
-
 
 
 

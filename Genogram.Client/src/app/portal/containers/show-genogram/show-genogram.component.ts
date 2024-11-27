@@ -14,7 +14,7 @@ import { Relationship } from '../../../core/models/Relationship';
 })
 export class ShowGenogramComponent {
   @Input() childName: string = 'Sathvika CV'; 
-
+  
   relationships:Relationship[]=[];
   constructor(public dialogRef: MatDialogRef<ShowGenogramComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

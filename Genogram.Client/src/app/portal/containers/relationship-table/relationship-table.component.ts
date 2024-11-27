@@ -112,8 +112,8 @@ export class RelationshipTableComponent {
 
  onGenogram(): void {
   const dialogRef = this.dialog.open(ShowGenogramComponent, {
-    width: '650px',
-    height: '500px', 
+    width: '850px',
+    height: '600px', 
     data: {
       relationships: this.relationships, 
       childId: this.childId

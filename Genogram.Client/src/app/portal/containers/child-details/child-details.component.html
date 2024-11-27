@@ -36,16 +36,18 @@
         </p>
       </div>
     </div>
+  </mat-card>
 
-    <mat-tab-group>
-      <mat-tab label="Guardians" [disabled]="activeTab !== 2">
-        <app-relationship-table [relationships]="relationships" [childId]="childId"></app-relationship-table>
-      </mat-tab>
-      <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
-      <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
-      <mat-tab label="Documents" [disabled]="activeTab !== 3"></mat-tab>
-      <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
-      <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>
-    </mat-tab-group>
-    
-
+  <mat-tab-group [selectedIndex]="selectedTabIndex" color="accent">
+    <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
+    <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
+    <mat-tab label="Guardians" [disabled]="activeTab !== 2">
+      <app-relationship-table [relationships]="relationships" [childId]="childId"></app-relationship-table>
+    </mat-tab>
+    <mat-tab label="Documents" [disabled]="activeTab !== 3"></mat-tab>
+    <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
+    <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>
+  </mat-tab-group>
+  
+ 
+</div>

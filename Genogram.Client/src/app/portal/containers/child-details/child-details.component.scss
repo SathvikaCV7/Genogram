@@ -1,22 +1,25 @@
 /* Main container styling */
 .main-container {
   display: flex;
+  flex-direction: column; /* Stacks items vertically */
   justify-content: center;
   align-items: center;
   margin: 20px;
   padding: 20px;
-  background-color: #3f51b5; /* Light pink for main background */
+  background-color: #ffffff; /* Light pink for main background */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 /* Card styling */
 mat-card.profile-card {
- width: auto;
+  width: 100%; /* Take up the full width of the parent container */
   padding: 20px;
-  background-color: rgb(228, 164, 197); /* Matches button color */
+  background-color: rgb(241, 202, 222); /* Matches button color */
   border-radius: 10px;
   color: #333; /* Darker text for contrast */
+  margin-bottom: 20px; /* Space between card and tabs */
+  transition: height 0.3s ease; /* Smooth transition for height change */
 }
 
 /* Header styling */
@@ -35,7 +38,7 @@ mat-card.profile-card {
   border: 3px solid #ff4081; /* Button pink color as border */
 }
 
-/* Info and details */
+/* Info and details sections */
 .info {
   flex: 1;
   margin-left: 20px;
@@ -55,8 +58,9 @@ mat-card.profile-card {
   display: inline-block;
 }
 
-/* Tabs styling */
+/* Tab group styling */
 mat-tab-group {
+  width: 100%; /* Ensures tab group matches the card's width */
   margin-top: 20px;
 }
 
@@ -77,9 +81,8 @@ strong {
   color: #333;
 }
 
-/* Buttons */
 button {
-  background-color: #ff4081; /* Matches button pink */
+  background-color: #ff4081;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -88,20 +91,45 @@ button {
 }
 
 button:hover {
-  background-color: #e91e63; /* Darker pink for hover */
+  background-color: #e91e63;
   cursor: pointer;
 }
 
-/* Responsive adjustments */
+/* Media query for medium screens (e.g., tablets and below) */
 @media (max-width: 768px) {
+  mat-card.profile-card {
+    height: auto; /* Allow the card to increase in height when needed */
+  }
+
   .header {
-    flex-direction: column;
-    align-items: center;
+    display: block; /* Stack elements vertically */
+    align-items: flex-start; /* Align the content from the left */
+  }
+
+  .profile-image img {
+    width: 100px; /* Smaller profile image for smaller screens */
+    height: 100px;
   }
 
   .info,
   .details {
-    text-align: center;
+    flex: none;
     margin-left: 0;
+    margin-top: 10px; /* Add space between the info and details */
+  }
+
+  .info p,
+  .details p {
+    margin: 10px 0;
+  }
+
+  .icon-text {
+    display: block; /* Stack the icon-text vertically */
+    margin-bottom: 12px;
+  }
+
+  .icon-text mat-icon {
+    font-size: 22px; /* Larger icons for better visibility on small screens */
   }
 }
+

@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddGuardianComponent } from '../add-guardian/add-guardian.component';
 import { RelationshipTypes } from '../../../core/Enums/RelationshipTypes';
 import { RelationshipService } from '../../../core/services/relationship.service';
+import { ShowGenogramComponent } from '../show-genogram/show-genogram.component';
 
 @Component({
   selector: 'app-relationship-table',
@@ -19,9 +20,12 @@ import { RelationshipService } from '../../../core/services/relationship.service
 })
 export class RelationshipTableComponent {
   constructor(public dialog: MatDialog) { }
+
   @Input() relationships: Relationship[] = [];
   @Input() childId: number|undefined;
+
   displayedColumns: string[] = NameOf.those<Relationship>(['actions','firstName', 'lastName', 'relationshipType', 'phoneNumber', 'email', 'isPrimaryContact', 'remarks']);
+  
   relationshipService=inject(RelationshipService);
   id:number|undefined;
   dataSource: Relationship[] = [];
@@ -38,7 +42,7 @@ export class RelationshipTableComponent {
       data:
       {
       relationships: this.relationships,
-      relationshipTypes: Object.values(RelationshipTypes) } // Pass Relationship enum to the dialog
+      relationshipTypes: Object.values(RelationshipTypes) } 
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -56,10 +60,6 @@ export class RelationshipTableComponent {
         this.dataSource = [...this.dataSource, result]; 
       }
     });
-  }
-
-  onGenogram(): void {
-    console.log("Genogram button clicked");
   }
 
   onEdit(relationship: Relationship): void {
@@ -108,5 +108,21 @@ export class RelationshipTableComponent {
       }
     });
   }
+
+ onGenogram(): void {
+  const dialogRef = this.dialog.open(ShowGenogramComponent, {
+    width: '650px',
+    height: '500px', 
+    data: {
+      relationships: this.relationships, 
+      childId: this.childId
+    }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    console.log('Genogram dialog closed', result);
+  });
+}
+
   
 }

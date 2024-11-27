@@ -1,11 +1,31 @@
 .button-group {
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;    /* Centers vertically */
-    gap: 10px;              /* Adds space between the buttons */
-    margin: 20px;    /* Adds some spacing between the buttons and the table */
-  }
-  mat-table{
-    padding: 20px;
-    background-color: rgb(228, 164, 197);
-  }
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 3px; /* Adds space between the buttons */
+  margin: 20px; /* Adds some spacing between the buttons and the table */
+}
+
+mat-table {
+  padding: 20px;
+  background-color: rgb(228, 164, 197);
+}
+
+/* Add border to buttons */
+
+
+/* Optional: Change border color on hover */
+
+.genogram-button{
+  color:black;
+  background-color: #d8d8de;
+  padding: 20px 20px; 
+
+}
+
+.add-buton{
+  padding: 20px 20px;
+  color: #F4F4F9 eaeaef; 
+  transition: all 0.3s ease; 
+
+}

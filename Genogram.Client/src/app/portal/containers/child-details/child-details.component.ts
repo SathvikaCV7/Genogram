@@ -23,6 +23,7 @@ export class ChildDetailsComponent implements OnInit {
   childId:number|undefined;
   activeTab = 2; 
   relationships: Relationship[] = []; 
+selectedTabIndex=2;
   constructor(){
     
   }

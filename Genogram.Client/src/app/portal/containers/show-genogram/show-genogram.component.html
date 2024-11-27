@@ -7,56 +7,46 @@
     </div>
   
     <div class="genogram-graph">
-    <ngx-graph
-      class="chart-container"
-      [view]="[800, 550]"
-      [links]="[
-        { id: 'a', source: 'child', target: 'mother', label: 'Mother' },
-        { id: 'b', source: 'child', target: 'father', label: 'Father' },
-        { id: 'c', source: 'child', target: 'brother', label: 'Brother' },
-        { id: 'd', source: 'brother', target: 'father', label: 'Son' },
-        { id: 'e', source: 'brother', target: 'mother', label: 'Son' }
-      ]"
-      [nodes]="[
-        { id: 'child', label: 'Child' },
-        { id: 'mother', label: 'Mother' },
-        { id: 'father', label: 'Father' },
-        { id: 'brother', label: 'Brother' }
-      ]"
-      layout="dagreCluster"
-    >
-      <ng-template #nodeTemplate let-node>
-        <svg:g class="node">
-          <svg:rect
-            [attr.width]="node.dimension.width"
-            [attr.height]="node.dimension.height"
-            [attr.fill]="node.data.color"
-          ></svg:rect>
-          <svg:text
-            [attr.x]="node.dimension.width / 2"
-            [attr.y]="node.dimension.height / 2"
-            text-anchor="middle"
-            alignment-baseline="middle"
-          >
-            {{ node.label }}
-          </svg:text>
-        </svg:g>
-      </ng-template>
-      <ng-template #linkTemplate let-link>
-        <svg:g class="edge">
-          <svg:path class="line" stroke-width="2" marker-end="url(#arrow)"></svg:path>
-          <svg:text class="edge-label" text-anchor="middle">
-            <textPath
-              class="text-path"
-              [attr.href]="'#' + link.id"
-              [style.dominant-baseline]="link.dominantBaseline"
-              startOffset="50%">
-              {{ link.label }}
-            </textPath>
-          </svg:text>
-        </svg:g>
-      </ng-template>
-    </ngx-graph>
-</div>
+      <ngx-graph
+        class="chart-container"
+        [view]="[800, 550]"
+        [links]="links"
+        [nodes]="nodes"
+        layout="dagreCluster"
+      >
+        <ng-template #nodeTemplate let-node>
+          <svg:g class="node">
+            <svg:rect
+              [attr.width]="node.dimension.width"
+              [attr.height]="node.dimension.height"
+              [attr.fill]="node.data.color"
+            ></svg:rect>
+            <svg:text
+              [attr.x]="node.dimension.width / 2"
+              [attr.y]="node.dimension.height / 2"
+              text-anchor="middle"
+              alignment-baseline="middle"
+            >
+              {{ node.label }}
+            </svg:text>
+          </svg:g>
+        </ng-template>
+        <ng-template #linkTemplate let-link>
+          <svg:g class="edge">
+            <svg:path class="line" stroke-width="2" marker-end="url(#arrow)"></svg:path>
+            <svg:text class="edge-label" text-anchor="middle">
+              <textPath
+                class="text-path"
+                [attr.href]="'#' + link.id"
+                [style.dominant-baseline]="link.dominantBaseline"
+                startOffset="50%"
+              >
+                {{ link.label }}
+              </textPath>
+            </svg:text>
+          </svg:g>
+        </ng-template>
+      </ngx-graph>
+    </div>
   </div>
   

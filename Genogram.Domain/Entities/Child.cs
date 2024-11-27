@@ -13,7 +13,7 @@ namespace Genogram.Domain.Entities
         public string Address { get; set; } = null!;
         public string Nationality { get; set; } = null!;
         public string Language { get; set; } = null!;
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public string? ImagePath { get; set; }
 
         public ICollection<Relationship>? Relationships { get; set; }

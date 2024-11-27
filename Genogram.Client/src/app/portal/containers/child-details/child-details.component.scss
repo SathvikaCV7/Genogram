@@ -1,7 +1,7 @@
 /* Main container styling */
 .main-container {
   display: flex;
-  flex-direction: column; /* Stacks items vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 20px;
@@ -72,7 +72,7 @@ mat-tab-group {
 }
 
 .icon-text mat-icon {
-  font-size: 18px;
+  font-size: 24px;
   color: #ff4081; /* Button pink color */
 }
 
@@ -115,16 +115,11 @@ button:hover {
   .details {
     flex: none;
     margin-left: 0;
-    margin-top: 10px; /* Add space between the info and details */
-  }
-
-  .info p,
-  .details p {
-    margin: 10px 0;
+    margin-top: 35px; /* Add space between the info and details */
   }
 
   .icon-text {
-    display: block; /* Stack the icon-text vertically */
+   
     margin-bottom: 12px;
   }
 

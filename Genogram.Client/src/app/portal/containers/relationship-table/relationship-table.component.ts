@@ -10,11 +10,12 @@ import { AddGuardianComponent } from '../add-guardian/add-guardian.component';
 import { RelationshipTypes } from '../../../core/Enums/RelationshipTypes';
 import { RelationshipService } from '../../../core/services/relationship.service';
 import { ShowGenogramComponent } from '../show-genogram/show-genogram.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-relationship-table',
   standalone: true,
-  imports: [MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule,MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule],
   templateUrl: './relationship-table.component.html',
   styleUrl: './relationship-table.component.scss'
 })
@@ -66,7 +67,7 @@ export class RelationshipTableComponent {
     const originalData = { ...relationship }; 
     this.id=relationship.id;
     const dialogRef = this.dialog.open(AddGuardianComponent, {
-      width: '450px',
+      width: '600px',
       data: {
         relationship: relationship, 
         relationshipTypes: Object.values(RelationshipTypes),

@@ -8,7 +8,7 @@ export interface Relationship {
     lastName?: string; 
     relationshipType: string;
     email?: string; 
-    phoneNumber?: string; 
+    phoneNumber?: number; 
     isPrimaryContact: boolean;
     remarks?:string;
     actions?:string;

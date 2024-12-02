@@ -5,12 +5,11 @@
   </div>
   <div class="right-header">
     <a  [routerLink]="'/child-list'">
-      <mat-icon style="vertical-align: middle;">arrow_left</mat-icon>
+      <mat-icon class="arrow-icon">arrow_left</mat-icon>
       Back to List
     </a>
   </div>
 </div>
-
 <div class="main-container">
   <mat-card class="profile-card">
     <div class="header">
@@ -50,7 +49,6 @@
       </div>
     </div>
   </mat-card>
-
   <mat-tab-group [selectedIndex]="selectedTabIndex" color="accent">
     <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
     <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
@@ -61,7 +59,5 @@
     <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
     <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>
   </mat-tab-group>
-  
- 
 </div>
 

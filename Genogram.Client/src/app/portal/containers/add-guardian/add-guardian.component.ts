@@ -35,7 +35,6 @@ export class AddGuardianComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
     debugger;
     this.relationshipTypes = this.data.relationshipTypes;
@@ -48,7 +47,7 @@ export class AddGuardianComponent implements OnInit {
       lastName: [this.isEditMode ? this.data.relationship.lastName : '', Validators.required],
       relationshipType: [this.isEditMode ? this.data.relationship.relationshipType : '', Validators.required],
       email: [this.isEditMode ? this.data.relationship.email : '', [Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]+/)]],
-      phoneNumber: [this.isEditMode ? this.data.relationship.phoneNumber : '', Validators.pattern(/^[0-9]{10}$/)],
+      phoneNumber: [this.isEditMode ? this.data.relationship.phoneNumber : '',[Validators.required ,Validators.pattern(/^[0-9]{10}$/)]],
       isPrimaryContact: [this.isEditMode ? this.data.relationship.isPrimaryContact : false],
       remarks: [this.isEditMode ? this.data.relationship.remarks : '']
     });
@@ -87,7 +86,6 @@ export class AddGuardianComponent implements OnInit {
       currentRelationships.filter(r => r.relationshipType === 'Grandmother').length >= 2) {
       return true;
     }
-  
     return false;
   }
   

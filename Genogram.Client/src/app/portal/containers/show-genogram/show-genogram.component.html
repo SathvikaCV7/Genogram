@@ -1,6 +1,6 @@
-<div class="genogram-container" #zoomContainer>
+<div class="genogram-container">
   <div class="genogram-header">
-    <h3>Genogram of {{ childName }}</h3>
+    <h2>Genogram {{ childName }}</h2>
     <button class="close-button" (click)="closeGenogram()">
       <mat-icon>close</mat-icon>
     </button>
@@ -8,12 +8,13 @@
 
   <div class="genogram-graph" >
     <ngx-graph
-  class="chart-container"
   [view]="[850, 600]"
   [links]="links"
   [nodes]="nodes"
+  [curve]="curve"
   layout="dagreCluster"
 >
+<div class="chart-container">
   <ng-template #defsTemplate>
     <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
       <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
@@ -76,6 +77,10 @@
       </svg:text>
     </svg:g>
   </ng-template>
+</div>
+
+
+
 </ngx-graph>
   </div>
 </div>

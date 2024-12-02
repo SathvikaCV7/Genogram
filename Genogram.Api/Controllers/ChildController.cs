@@ -17,11 +17,10 @@ namespace Genogram.Api.Controllers
         {
             _unitOfWork = unitOfWork;
             _childService = childService;
-
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Child>> GetChild(int id)
+        public async Task<ActionResult<Child>> GetChildAsync(int id)
         {
             var child = await _unitOfWork.Children.GetByIdAsync(c => c.Id == id, c => c.Relationships);
             if (child == null)
@@ -30,7 +29,7 @@ namespace Genogram.Api.Controllers
         }
 
         [HttpGet("GetAllChildren")]
-        public async Task<ActionResult<IEnumerable<Child>>> GetAllChildren()
+        public async Task<ActionResult<IEnumerable<Child>>> GetAllChildrenAsync()
         {
             var children = await _unitOfWork.Children.GetAllAsync(); 
             if (children == null || !children.Any())
@@ -40,14 +39,14 @@ namespace Genogram.Api.Controllers
         }
 
         [HttpPost("CreateChild")]
-        public async Task<ActionResult> CreateChild(ChildDto childDto)
+        public async Task<ActionResult> CreateChildAsync(ChildDto childDto)
         {
             await _childService.AddChildAsync(childDto);
             return Ok(new { message="Child Created Successfully" });
         }
 
         [HttpPost("EditChild")]
-        public async Task<ActionResult> EditChild(Child child)
+        public async Task<ActionResult> EditChildAsync(Child child)
         {
             await _unitOfWork.Children.UpdateAsync(child);
             await _unitOfWork.SaveChangesAsync();

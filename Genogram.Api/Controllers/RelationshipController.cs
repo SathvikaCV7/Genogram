@@ -20,33 +20,29 @@ namespace Genogram.Api.Controllers
         public RelationshipController(IUnitOfWork unitOfWork, IMapper mapper, IRelationshipService relationshipService)
         {
             _unitOfWork = unitOfWork;
-
             _relationshipService = relationshipService;
         }
       
 
         [HttpPost("Add")]
-        public async Task<ActionResult> AddRelationship([FromBody] RelationshipDto relationshipDto)
+        public async Task<ActionResult> AddRelationshipAsync([FromBody] RelationshipDto relationshipDto)
         {
             await _relationshipService.AddRelationshipAsync(relationshipDto);
             return Ok(new { message = "Success" });
         }
 
         [HttpPost("Edit")]
-        public async Task<ActionResult> EditRelationship([FromBody] RelationshipDto relationshipDto)
+        public async Task<ActionResult> EditRelationshipAsync([FromBody] RelationshipDto relationshipDto)
         {
             await _relationshipService.UpdateRelationshipAsync(relationshipDto);
             return Ok(new { message = "Success" });
         }
 
-        [HttpDelete("Delete/{id}")]
 
-        public async Task<ActionResult> DeleteRelationship(int? id)
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult> DeleteRelationshipAsync(int? id)
         {
            await _relationshipService.DeleteRelationshipAsync(id);
-            //if (message != "success") { 
-            //    return BadRequest(new {message="Primary Contact Relation can't be deleted"});
-            //}
             return Ok(new { message = "Successfully deleted" });
         }
        

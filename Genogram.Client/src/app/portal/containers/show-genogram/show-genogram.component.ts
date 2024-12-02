@@ -4,19 +4,19 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { Relationship } from '../../../core/models/Relationship';
-import * as d3 from 'd3';
-import {  ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import * as shape from 'd3-shape';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-show-genogram',
   standalone: true,
-  imports: [NgxGraphModule,MatIconModule,CommonModule],
+  imports: [MatCardModule,NgxGraphModule,MatIconModule,CommonModule],
   templateUrl: './show-genogram.component.html',
   styleUrl: './show-genogram.component.scss'
 })
 export class ShowGenogramComponent {
-  childName: string |undefined; 
-  
+  childName: string =''; 
+  curve = shape.curveStep;
   relationships:Relationship[]=[];
   constructor(public dialogRef: MatDialogRef<ShowGenogramComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -29,20 +29,26 @@ export class ShowGenogramComponent {
     this.initializeGenogram();
   }
 
-
-  view: [number, number] = [750, 500]; 
   nodes:any[]=[];
   links:any[]=[];
   relationshipTypeCount: { [key: string]: number } = {};
   parents: any[] = [];
 
   initializeGenogram() {
-    const padding = 40; 
-  
+    
+    const padding = 40;
+
+    // Set a default height and width for the child node
+    const childWidth = this.calculateTextWidth(this.childName) + padding;
+    const childHeight = 30;
+    const childX = 400; // Set X-coordinate
+    const childY = 200; // Set Y-coordinate
+
     this.nodes.push({
       id: 'child',
       label: this.childName,
-      dimension: { width: this.calculateTextWidth(this.childName, '16px Arial') + padding },
+      dimension: { width: childWidth ,height:childHeight},
+      position: { x: childX, y: childY },
       icon: 'assets/images/child_icon1.svg',
     });
   
@@ -64,10 +70,12 @@ export class ShowGenogramComponent {
       }
   
       const label = `${relationship.firstName} ${relationship.lastName}`;
+      const nodeWidth = this.calculateTextWidth(label) + padding;
+      const nodeHeight = 30; 
       this.nodes.push({
         id: nodeId,
         label: label,
-        dimension: { width: this.calculateTextWidth(label, '16px Arial') + padding },
+        dimension: { width: nodeWidth, height: nodeHeight },
         icon: 'assets/images/user2.svg',
       });
   
@@ -100,23 +108,20 @@ export class ShowGenogramComponent {
   }
   
  
-  calculateTextWidth(text: string | undefined, font: string): number {
-    if (!text) return 0;
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (context) {
-      context.font = font;
-      return context.measureText(text).width;
-    }
-    return 0;
+  calculateTextWidth(text: string ): number {
+   const baseWidth=55;
+   const labelWidth=text.length*8;
+   return labelWidth;
+
   }
   
-  
-
   closeGenogram() {
     this.dialogRef.close();
   }
  
-
- 
 }
+
+
+
+
+

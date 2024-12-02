@@ -18,7 +18,7 @@ namespace Genogram.Application.Repository
             _context = context;
         }
 
-        public async Task<T> GetByIdAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        public async Task<T?> GetByIdAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _context.Set<T>();
             if (includes != null)

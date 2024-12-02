@@ -35,8 +35,6 @@ namespace Genogram.Application.Repository
             existingRelationship.Email = updatedRelationship.Email;
             existingRelationship.PhoneNumber = updatedRelationship.PhoneNumber;
             existingRelationship.Remarks = updatedRelationship.Remarks;
-
-
             return existingRelationship;
         }
 

@@ -1,6 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { inject } from '@angular/core';
@@ -26,7 +25,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           case 500:
           toastr.error('Internal Server Error');
           break;
-         
+          default:
+          toastr.error("Unexpected Error");
+          break;
         }
       }
       return throwError(error);

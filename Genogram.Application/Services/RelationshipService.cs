@@ -23,7 +23,7 @@ namespace Genogram.Application.Services
 
         }
 
-        public async Task SetOnlyOnePrimaryContact(int childId, bool isPrimaryContact)
+        public async Task SetOnlyOnePrimaryContactAsync(int childId, bool isPrimaryContact)
         {
             if (isPrimaryContact)
             {
@@ -50,7 +50,7 @@ namespace Genogram.Application.Services
 
             if (relationship.IsPrimaryContact)
             {
-                await SetOnlyOnePrimaryContact(relationship.ChildId, true);
+                await SetOnlyOnePrimaryContactAsync(relationship.ChildId, true);
             }
             await _unitOfWork.Relationships.AddAsync(relationship);
             await _unitOfWork.SaveChangesAsync();
@@ -62,7 +62,7 @@ namespace Genogram.Application.Services
 
             if (relationship.IsPrimaryContact)
             {
-                await SetOnlyOnePrimaryContact(relationship.ChildId, true);
+                await SetOnlyOnePrimaryContactAsync(relationship.ChildId, true);
             }
             await _unitOfWork.Relationships.UpdateAsync(relationship);
             var remarks = relationship.Remarks;
@@ -74,8 +74,6 @@ namespace Genogram.Application.Services
             var relationship=await _unitOfWork.Relationships.GetByIdAsync(r=>r.Id==id);
             _unitOfWork.Relationships.Remove(relationship);
             await _unitOfWork.SaveChangesAsync();
-            
-
         }
     }
 }

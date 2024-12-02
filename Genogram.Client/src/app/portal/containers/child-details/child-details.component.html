@@ -1,8 +1,21 @@
+<div class="header-container">
+  <div class="left-header">
+    <mat-icon>account_tree</mat-icon>
+    <h2>Genogram</h2>
+  </div>
+  <div class="right-header">
+    <a  [routerLink]="'/child-list'">
+      <mat-icon style="vertical-align: middle;">arrow_left</mat-icon>
+      Back to List
+    </a>
+  </div>
+</div>
+
 <div class="main-container">
   <mat-card class="profile-card">
     <div class="header">
-      <div class="profile-image" *ngIf="childId==1">
-        <img src="assets/images/Child1.png" alt="Child" />
+      <div class="profile-image" >
+        <img [src]="image" alt="Child" />
       </div>
       <div class="info">
         <p>
@@ -51,3 +64,4 @@
   
  
 </div>
+

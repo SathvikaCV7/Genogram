@@ -34,6 +34,7 @@ namespace Genogram.Application.Repository
                 existingChild.DateOfBirth = dob;
                 existingChild.Nationality = child.Nationality;
                 existingChild.Language = child.Language;
+                existingChild.Image = child.Image;
                 return existingChild;
             }
             else

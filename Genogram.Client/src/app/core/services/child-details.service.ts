@@ -16,9 +16,15 @@ export class ChildDetailsService {
   getChild(childId:string|null):Observable<Child>{
    return  this.http.get<Child>(this.baseApiUrl+`Child/${childId}`);
   }
+  getAllChildren():Observable<Child[]>{
+    return this.http.get<Child[]>(this.baseApiUrl+"Child/GetAllChildren");
+  }
 
   updateChild(child:Child):Observable<Child>{
     return this.http.post<Child>(this.baseApiUrl+`Child/EditChild`,child)
+  }
+  addChild(child:Child):Observable<Child>{
+    return this.http.post<Child>(this.baseApiUrl+`Child/CreateChild`,child)
   }
 
 }

@@ -37,9 +37,8 @@ export class ShowGenogramComponent {
   parents: any[] = [];
 
   initializeGenogram() {
-    const padding = 40; // Add some padding to the node width
+    const padding = 40; 
   
-    // Add the child node
     this.nodes.push({
       id: 'child',
       label: this.childName,
@@ -47,7 +46,6 @@ export class ShowGenogramComponent {
       icon: 'assets/images/child_icon1.svg',
     });
   
-    // Add relationship nodes
     this.relationships.forEach((relationship) => {
       const relationshipType = relationship.relationshipType.toLowerCase();
       const nodeId = `${relationshipType}-${relationship.id}`;
@@ -73,7 +71,6 @@ export class ShowGenogramComponent {
         icon: 'assets/images/user2.svg',
       });
   
-      // Add links
       this.links.push({
         id: `${nodeId}-${this.relationshipTypeCount[relationshipType]}`,
         source: 'child',
@@ -82,7 +79,6 @@ export class ShowGenogramComponent {
       });
     });
   
-    // Add sibling relationships
     this.relationships
       .filter(
         (relationship) =>
@@ -103,9 +99,7 @@ export class ShowGenogramComponent {
       });
   }
   
-  /**
-   * Measure text width using a hidden canvas
-   */
+ 
   calculateTextWidth(text: string | undefined, font: string): number {
     if (!text) return 0;
     const canvas = document.createElement('canvas');

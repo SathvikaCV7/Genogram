@@ -26,6 +26,7 @@ export class AddOrEditChildComponent implements OnInit{
   form!: FormGroup;
   child: Child |undefined;
   isEditMode: boolean = false;
+  base64Image: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<AddOrEditChildComponent>,
@@ -38,8 +39,9 @@ export class AddOrEditChildComponent implements OnInit{
   ngOnInit(): void {
     debugger;
     this.child=this.data.child;
+    if(this.child){
     this.isEditMode=true;
-
+    }
     this.form = this.fb.group({
       name: [
         this.isEditMode ? this.data.child.name : '', 
@@ -61,13 +63,9 @@ export class AddOrEditChildComponent implements OnInit{
         this.isEditMode ? this.data.child.dateOfBirth! : '', 
         Validators.required
       ],
-      // imagePath: [
-      //   this.isEditMode ? this.data.child.imagePath : '', 
-      //   Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|gif|bmp)/)
-      // ],
-      // relationships: [
-      //   this.isEditMode ? this.data.child.relationships?.$values : []
-      // ]
+      image: [
+        this.isEditMode ? this.data.child.image : null
+      ]
     });
     
     
@@ -77,6 +75,18 @@ export class AddOrEditChildComponent implements OnInit{
     this.dialogRef.close();
   }
 
+  onFileChange(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput?.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.base64Image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit(): void {
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach(control => {
@@ -84,8 +94,12 @@ export class AddOrEditChildComponent implements OnInit{
       });
       return;
     }
+    debugger;
     if (this.form.valid) {
+      this.form.value.image=this.base64Image;
       this.dialogRef.close(this.form.value);
     }
   }
+
+  
 }

@@ -1,5 +1,5 @@
 <div class="button-group">
-    <button mat-raised-button class="add-buton" color="accent" (click)="onAdd()"><mat-icon>add</mat-icon>Add</button>
+    <button mat-raised-button class="add-buton" color="accent" (click)="onAdd()"><mat-icon>add</mat-icon>Add Relationship</button>
     <button mat-raised-button class="genogram-button" (click)="onGenogram()"><mat-icon> zoom_out_map</mat-icon>Genogram</button>
    
   
@@ -62,7 +62,6 @@
       </td>
     </ng-container>
   
-    <!-- Remarks Column -->
     <ng-container matColumnDef="remarks">
       <th mat-header-cell *matHeaderCellDef> Remarks </th>
       <td mat-cell *matCellDef="let element"><a (click)="onRemarks(element)"> <mat-icon color="black">chat</mat-icon></a></td>

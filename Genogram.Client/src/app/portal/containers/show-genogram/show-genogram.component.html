@@ -1,6 +1,6 @@
 <div class="genogram-container" #zoomContainer>
   <div class="genogram-header">
-    <h2>Genogram {{ childName }}</h2>
+    <h3>Genogram of {{ childName }}</h3>
     <button class="close-button" (click)="closeGenogram()">
       <mat-icon>close</mat-icon>
     </button>
@@ -34,7 +34,6 @@
  
   <ng-template #nodeTemplate let-node>
     <svg:g class="node">
-      <!-- Rectangle for the node with border -->
       <svg:rect
         [attr.width]="node.dimension.width"
         [attr.height]="node.dimension.height"
@@ -45,7 +44,6 @@
         ry="5"
       ></svg:rect>
       
-      <!-- SVG Icon -->
       <svg:image
         *ngIf="node.icon"
         [attr.href]="node.icon"
@@ -55,7 +53,6 @@
         height="20"
       ></svg:image>
   
-      <!-- Text Label -->
       <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2">
         {{ node.label }}
       </svg:text>

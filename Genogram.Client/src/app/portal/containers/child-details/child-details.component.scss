@@ -1,44 +1,41 @@
-/* Main container styling */
+
 .main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px;
+  margin: 10px 25px;
   padding: 30px;
-  background-color: #ffffff; /* Light pink for main background */
+  background-color: #ffffff; 
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Card styling */
+
 mat-card.profile-card {
-  width: 100%; /* Take up the full width of the parent container */
-  padding: 20px;
-  background-color: rgb(241, 202, 222); /* Matches button color */
+  width: 100%; 
+  padding: 8px;
+  background-color: rgb(241, 202, 222); 
   border-radius: 10px;
-  color: #333; /* Darker text for contrast */
-  margin-bottom: 20px; /* Space between card and tabs */
-  transition: height 0.3s ease; /* Smooth transition for height change */
+  color: #333; 
+  margin-bottom: 20px; 
+  transition: height 0.3s ease; 
 }
 
-/* Header styling */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Profile image styling */
 .profile-image img {
   width: 125px;
   height: 125px;
-  border-radius: 50%; /* Circular image */
+  border-radius: 50%; 
   object-fit: cover;
-  border: 3px solid #ff4081; /* Button pink color as border */
+  border: 3px solid #ff4081;
 }
 
-/* Info and details sections */
 .info {
   flex: 1;
   margin-left: 20px;
@@ -58,9 +55,8 @@ mat-card.profile-card {
   display: inline-block;
 }
 
-/* Tab group styling */
 mat-tab-group {
-  width: 100%; /* Ensures tab group matches the card's width */
+  width: 100%; 
   margin-top: 20px;
 }
 
@@ -73,7 +69,7 @@ mat-tab-group {
 
 .icon-text mat-icon {
   font-size: 24px;
-  color: #ff4081; /* Button pink color */
+  color: #ff4081; 
 }
 
 strong {
@@ -95,19 +91,18 @@ button:hover {
   cursor: pointer;
 }
 
-/* Media query for medium screens (e.g., tablets and below) */
 @media (max-width: 768px) {
   mat-card.profile-card {
-    height: auto; /* Allow the card to increase in height when needed */
+    height: auto; 
   }
 
   .header {
-    display: block; /* Stack elements vertically */
-    align-items: flex-start; /* Align the content from the left */
+    display: block; 
+    align-items: flex-start; 
   }
 
   .profile-image img {
-    width: 100px; /* Smaller profile image for smaller screens */
+    width: 100px; 
     height: 100px;
   }
 
@@ -115,7 +110,7 @@ button:hover {
   .details {
     flex: none;
     margin-left: 0;
-    margin-top: 35px; /* Add space between the info and details */
+    margin-top: 35px; 
   }
 
   .icon-text {
@@ -124,7 +119,53 @@ button:hover {
   }
 
   .icon-text mat-icon {
-    font-size: 22px; /* Larger icons for better visibility on small screens */
+    font-size: 22px;
   }
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color:#d8d8de ;
+  border-bottom: 1px solid #ddd;
+}
+
+.left-header {
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
+  margin-left: 10px;
+}
+
+.left-header mat-icon {
+  font-size: 24px; 
+  
+}
+
+.left-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333; 
+}
+
+.right-header {
+  display: flex;
+  align-items: center;
+}
+
+.right-header button {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.right-header a {
+  color: blue;            
+  cursor: pointer;        
+  font-size: 14px;        
+}
+
+.right-header a:hover {
+  color: darkblue;         
+}

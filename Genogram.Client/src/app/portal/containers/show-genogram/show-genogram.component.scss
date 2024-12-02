@@ -1,11 +1,10 @@
 .genogram-container {
   position: relative;
-  padding-top: 50px;
+
     display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 8px;
-    padding: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
@@ -13,25 +12,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
     border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
+   
     position: absolute;
-    top: 0;
+   justify-content: center;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    z-index: 10; /* Ensure the header stays on top */
-    padding: 10px;
+    background-color:rgb(241, 202, 222);
+    z-index: 10; 
+    
   }
   
-  .genogram-header h3 {
+  .genogram-header h3{
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
+    margin-top: 10px;
+    
+    
+    background-color: rgb(241, 202, 222);
   }
   
   .close-button {
+    position: absolute;
+    right:0;
     background: none;
     border: none;
     cursor: pointer;
@@ -51,8 +53,8 @@
   .genogram-graph {
     flex-grow: 1;
     overflow: auto;
-    margin-top: 70px; /* Adds space between the header and the graph */
-    padding: 10px; /* Ensures the graph does not overflow the container */
+   
+    padding: 10px;
   }
 
   

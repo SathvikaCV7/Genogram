@@ -121,9 +121,6 @@ export class RelationshipTableComponent {
               this.dataSource[index] = result;
               this.dataSource = [...this.dataSource];
               this.toastr.success("Relation Updated Successfully")
-              setTimeout(() => {
-                location.reload(); 
-              }, 2000);
             }
           });
         } else {

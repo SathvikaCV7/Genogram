@@ -9,7 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RelationshipTableComponent } from "../relationship-table/relationship-table.component";
 import { Relationship } from '../../../core/models/Relationship';
 import { ChildDetailsService } from '../../../core/services/child-details.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AddOrEditChildComponent } from '../add-or-edit-child/add-or-edit-child.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-child-details',
   standalone: true,
-  imports: [CommonModule,MatIconModule, MatCardModule, MatToolbarModule, MatButtonModule, MatTabsModule, MatTableModule, RelationshipTableComponent],
+  imports: [RouterLink,CommonModule,MatIconModule, MatCardModule, MatToolbarModule, MatButtonModule, MatTabsModule, MatTableModule, RelationshipTableComponent],
   templateUrl: './child-details.component.html',
   styleUrl: './child-details.component.scss'
 })
@@ -29,6 +29,7 @@ export class ChildDetailsComponent implements OnInit {
   activeTab = 2; 
   relationships: Relationship[] = []; 
   selectedTabIndex=2;
+  image:string|undefined='';
   constructor(  public dialog: MatDialog, private toastr: ToastrService,private route: ActivatedRoute){
   }
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class ChildDetailsComponent implements OnInit {
       this.child = child;
       this.childId=child.id;
       this.relationships = child.relationships?.$values || [];
+      this.image=child.image;
 
     });
   }
@@ -66,17 +68,21 @@ export class ChildDetailsComponent implements OnInit {
           'nationality',
           'language',
           'dateOfBirth',
-          'imagePath'
+          'image'
         ];
         const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
-  
+        debugger;
+        if(result.image){
+          this.image=result.image;
+          console.log(this.image);
+        }
         if (isChanged) {
           result.id = child?.id; 
           this.childDetailsService.updateChild(result).subscribe((res)=>{
+           
               this.child = result; 
               this.toastr.success('Child details updated successfully.');
           })
-
           
         } else {
           console.log('No changes detected, skipping API call.');
@@ -86,9 +92,8 @@ export class ChildDetailsComponent implements OnInit {
   }
   getGoogleMapsLink(address: string | undefined): string {
     if (!address) {
-      return 'https://www.google.com/maps'; // Default link if no address is provided
+      return 'https://www.google.com/maps'; 
     }
-    // Encode the address to ensure proper URL formatting
     const encodedAddress = encodeURIComponent(address);
     return `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
   }

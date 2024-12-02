@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class RemarksDialogComponent {
   constructor(    public dialogRef: MatDialogRef<RemarksDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { remarks: string }) {}
-  closeGenogram() {
+    closeGenogram() {
     this.dialogRef.close();
     
   }

@@ -1,0 +1,49 @@
+.children-list-card {
+    max-width: 1500px;
+    padding: 16px;
+    background-color: rgb(241, 202, 222);
+  }
+  
+  .add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+  
+  .mat-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    padding: 8px 16px;
+  }
+  
+  .mat-column-name, .mat-column-address, .mat-column-nationality, .mat-column-language, .mat-column-dob {
+    text-align: left;
+  }
+  
+  .mat-column-actions {
+    text-align: center;
+  }
+  
+  button.mat-icon-button {
+    margin: 0 5px;
+  }
+  
+.child-image{
+    height: 100px;
+    width:100px;
+    margin: 5px;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 25px;
+    padding: 30px;
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

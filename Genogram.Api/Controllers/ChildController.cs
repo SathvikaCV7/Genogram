@@ -29,6 +29,15 @@ namespace Genogram.Api.Controllers
             return child;
         }
 
+        [HttpGet("GetAllChildren")]
+        public async Task<ActionResult<IEnumerable<Child>>> GetAllChildren()
+        {
+            var children = await _unitOfWork.Children.GetAllAsync(); 
+            if (children == null || !children.Any())
+                return NotFound(new { message = "No children found." });
+
+            return Ok(children); 
+        }
 
         [HttpPost("CreateChild")]
         public async Task<ActionResult> CreateChild(ChildDto childDto)

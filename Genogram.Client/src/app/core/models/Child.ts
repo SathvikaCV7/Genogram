@@ -7,8 +7,11 @@ export interface Child {
     nationality?: string;
     language?: string;
     dateOfBirth?: string;
-    imagePath?: string; 
+    image?: string; 
     relationships?: { $values: Relationship[] };
+  }
+  export interface ChildrenResponse {
+    $values: Child[];  // Array of Child objects
   }
   
   

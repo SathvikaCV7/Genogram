@@ -1,0 +1,49 @@
+.button-group {
+  display: flex;
+  align-items: center;
+
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 3px; 
+  margin: 20px; 
+}
+.custom-search {
+  flex: 1; /* Adjusts the search bar size */
+  max-width: 250px; /* Set a max width for the input field */
+}
+
+.small-search-input {
+  width: 100%;
+}
+
+.small-margin {
+  margin-left: 15px; /* Optional margin for spacing */
+}
+
+mat-table {
+  padding: 20px;
+  background-color: rgb(228, 164, 197);
+}
+
+.genogram-button{
+  color:black;
+  background-color: #d8d8de;
+  padding: 20px 20px; 
+
+}
+
+.add-buton{
+  padding: 20px 20px;
+  color: #F4F4F9 eaeaef; 
+  transition: all 0.3s ease; 
+
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none; 
+}
+
+th{
+  font-weight: bolder;
+}

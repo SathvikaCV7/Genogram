@@ -1,0 +1,53 @@
+<div class="main-container">
+  <mat-card class="profile-card">
+    <div class="header">
+      <div class="profile-image" *ngIf="childId==1">
+        <img src="assets/images/Child1.png" alt="Child" />
+      </div>
+      <div class="info">
+        <p>
+          <span class="icon-text">
+            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child?.name }}<a (click)="onEditChild(child)" *ngIf="childId==1"><mat-icon>edit</mat-icon></a>
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>location_on</mat-icon> <strong>Address:</strong> {{ child?.address }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>my_location</mat-icon> <strong>Address Link:</strong>
+            <a [href]="getGoogleMapsLink(child?.address)" target="_blank">In Google Maps</a>
+          </span>
+        </p>
+      </div>
+      <div class="details">
+        <p>
+          <span class="icon-text">
+            <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child?.nationality }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>language</mat-icon> <strong>Language:</strong> {{ child?.language }}
+          </span>
+          <br />
+          <span class="icon-text">
+            <mat-icon>calendar_today</mat-icon> <strong>Date of Birth:</strong> {{ child?.dateOfBirth }}
+          </span>
+        </p>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-tab-group [selectedIndex]="selectedTabIndex" color="accent">
+    <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
+    <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
+    <mat-tab label="Guardians" [disabled]="activeTab !== 2">
+      <app-relationship-table [relationships]="relationships" [childId]="childId" [childName]="child?.name"></app-relationship-table>
+    </mat-tab>
+    <mat-tab label="Documents" [disabled]="activeTab !== 3"></mat-tab>
+    <mat-tab label="Efforts" [disabled]="activeTab !== 4"></mat-tab>
+    <mat-tab label="Mail" [disabled]="activeTab !== 5"></mat-tab>
+  </mat-tab-group>
+  
+ 
+</div>

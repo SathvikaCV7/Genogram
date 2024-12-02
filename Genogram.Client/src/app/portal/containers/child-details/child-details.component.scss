@@ -1,0 +1,130 @@
+/* Main container styling */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  padding: 30px;
+  background-color: #ffffff; /* Light pink for main background */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Card styling */
+mat-card.profile-card {
+  width: 100%; /* Take up the full width of the parent container */
+  padding: 20px;
+  background-color: rgb(241, 202, 222); /* Matches button color */
+  border-radius: 10px;
+  color: #333; /* Darker text for contrast */
+  margin-bottom: 20px; /* Space between card and tabs */
+  transition: height 0.3s ease; /* Smooth transition for height change */
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Profile image styling */
+.profile-image img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%; /* Circular image */
+  object-fit: cover;
+  border: 3px solid #ff4081; /* Button pink color as border */
+}
+
+/* Info and details sections */
+.info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.details {
+  flex: 1;
+}
+
+.info p,
+.details p {
+  margin: 15px 0;
+}
+
+.info strong,
+.details strong {
+  display: inline-block;
+}
+
+/* Tab group styling */
+mat-tab-group {
+  width: 100%; /* Ensures tab group matches the card's width */
+  margin-top: 20px;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.icon-text mat-icon {
+  font-size: 24px;
+  color: #ff4081; /* Button pink color */
+}
+
+strong {
+  font-weight: bold;
+  color: #333;
+}
+
+button {
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e91e63;
+  cursor: pointer;
+}
+
+/* Media query for medium screens (e.g., tablets and below) */
+@media (max-width: 768px) {
+  mat-card.profile-card {
+    height: auto; /* Allow the card to increase in height when needed */
+  }
+
+  .header {
+    display: block; /* Stack elements vertically */
+    align-items: flex-start; /* Align the content from the left */
+  }
+
+  .profile-image img {
+    width: 100px; /* Smaller profile image for smaller screens */
+    height: 100px;
+  }
+
+  .info,
+  .details {
+    flex: none;
+    margin-left: 0;
+    margin-top: 35px; /* Add space between the info and details */
+  }
+
+  .icon-text {
+   
+    margin-bottom: 12px;
+  }
+
+  .icon-text mat-icon {
+    font-size: 22px; /* Larger icons for better visibility on small screens */
+  }
+}
+

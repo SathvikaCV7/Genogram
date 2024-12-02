@@ -1,45 +1,42 @@
 .genogram-container {
-  position: relative;
     display: flex;
     flex-direction: column;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .genogram-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccc;
     position: absolute;
-   justify-content: center;
+    top: 0;
+    justify-content: center;
     left: 0;
     width: 100%;
-    background-color:rgb(241, 202, 222);
+    z-index: 10; 
+    background-color:rgb(241, 202, 222); 
   }
-  
-  .genogram-header h3{
-    margin: 0;
-    margin-top: 10px;
+
+  .genogram-header h2{
+    margin-top: 7px;
     background-color: rgb(241, 202, 222);
   }
-  
+
   .close-button {
     position: absolute;
     right:0;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .close-button mat-icon {
-    font-size: 24px;
-    vertical-align: middle;
   }
 
+  .genogram-graph {
+    flex-grow: 1;
+    overflow: auto;
+    margin-top: 20px;
+  }
 
-.chart-container{
-  margin-top: 100px;
-}
+  [ngx-graph]{
+margin-top: 90px;
+  }

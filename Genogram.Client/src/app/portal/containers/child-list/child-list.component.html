@@ -17,7 +17,7 @@
           </ng-container>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let child"> {{child.name}} </mat-cell>
+        <mat-cell *matCellDef="let child"> <a [routerLink]="['/child', child.id]">{{child.name}}</a></mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="address">

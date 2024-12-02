@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Genogram.Domain.DTOs;
 using Genogram.Domain.Entities;
-using Genogram.Domain.Interfaces.IRepository;
 using Genogram.Domain.Interfaces.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Genogram.Api.Controllers
 {
@@ -12,42 +13,66 @@ namespace Genogram.Api.Controllers
     [ApiController]
     public class RelationshipController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork; 
-
         private readonly IRelationshipService _relationshipService;
 
-
-        public RelationshipController(IUnitOfWork unitOfWork, IMapper mapper, IRelationshipService relationshipService)
+        public RelationshipController(IRelationshipService relationshipService)
         {
-            _unitOfWork = unitOfWork;
             _relationshipService = relationshipService;
         }
-      
 
         [HttpPost("Add")]
         public async Task<ActionResult> AddRelationshipAsync([FromBody] RelationshipDto relationshipDto)
         {
-            await _relationshipService.AddRelationshipAsync(relationshipDto);
-            return Ok(new { message = "Success" });
+            try
+            {
+                if (relationshipDto == null)
+                {
+                    return BadRequest(new { message = "Invalid input data" });
+                }
+
+                await _relationshipService.AddRelationshipAsync(relationshipDto);
+                return Ok(new { message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while adding the relationship." });
+            }
         }
 
         [HttpPost("Edit")]
         public async Task<ActionResult> EditRelationshipAsync([FromBody] RelationshipDto relationshipDto)
         {
-            await _relationshipService.UpdateRelationshipAsync(relationshipDto);
-            return Ok(new { message = "Success" });
+            try
+            {
+                if (relationshipDto == null)
+                {
+                    return BadRequest(new { message = "Invalid input data" });
+                }
+                await _relationshipService.UpdateRelationshipAsync(relationshipDto);
+                return Ok(new { message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while updating the relationship." });
+            }
         }
-
 
         [HttpDelete("Delete/{id}")]
         public async Task<ActionResult> DeleteRelationshipAsync(int? id)
         {
-           await _relationshipService.DeleteRelationshipAsync(id);
-            return Ok(new { message = "Successfully deleted" });
+            try
+            {
+                if (id == null)
+                {
+                    return BadRequest(new { message = "Invalid relationship ID" });
+                }
+                await _relationshipService.DeleteRelationshipAsync(id);
+                return Ok(new { message = "Successfully deleted" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while deleting the relationship." });
+            }
         }
-       
-
-
-
     }
 }

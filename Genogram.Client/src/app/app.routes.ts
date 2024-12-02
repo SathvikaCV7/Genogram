@@ -16,8 +16,8 @@ export const routes: Routes = [
         component:ChildDetailsComponent
     },
     {
-        path:':childId',
-        component:ChildDetailsComponent
+        path: 'child/:id',  // ':id' is a dynamic route parameter
+        component: ChildDetailsComponent,  // Your child details component
     },
   
 ];

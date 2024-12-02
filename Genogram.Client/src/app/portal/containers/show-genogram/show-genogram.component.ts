@@ -1,4 +1,4 @@
-import { Component, Inject, Input, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, SimpleChanges,NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,11 +12,12 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [MatCardModule,NgxGraphModule,MatIconModule,CommonModule],
   templateUrl: './show-genogram.component.html',
-  styleUrl: './show-genogram.component.scss'
+  styleUrl: './show-genogram.component.scss',
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class ShowGenogramComponent {
   childName: string =''; 
-  curve = shape.curveStep;
+  curve = shape.curveLinear;
   relationships:Relationship[]=[];
   constructor(public dialogRef: MatDialogRef<ShowGenogramComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -37,18 +38,14 @@ export class ShowGenogramComponent {
   initializeGenogram() {
     
     const padding = 40;
-
-    // Set a default height and width for the child node
     const childWidth = this.calculateTextWidth(this.childName) + padding;
     const childHeight = 30;
-    const childX = 400; // Set X-coordinate
-    const childY = 200; // Set Y-coordinate
+ 
 
     this.nodes.push({
       id: 'child',
       label: this.childName,
       dimension: { width: childWidth ,height:childHeight},
-      position: { x: childX, y: childY },
       icon: 'assets/images/child_icon1.svg',
     });
   

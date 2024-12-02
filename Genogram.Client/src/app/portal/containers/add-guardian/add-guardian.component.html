@@ -16,7 +16,6 @@
                 <span *ngIf="form.get('firstName')?.errors?.['minlength']">
                   First name must be at least 3 characters long.
                 </span>
-            
                 <span *ngIf="form.get('firstName')?.errors?.['pattern']">
                   Enter only Letters
                 </span>
@@ -34,9 +33,9 @@
             </mat-form-field>
           </div>
         </div>
+
         <div class="row">
           <div class="col-lg-6">
-
             <mat-form-field class="full-width">
               <mat-label>Relationship</mat-label>
               <mat-select formControlName="relationshipType">
@@ -50,13 +49,11 @@
               </mat-error>
             </mat-form-field>
           </div>
-
           <div class="col-lg-6">
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
               <input matInput type="email" formControlName="email" />
               <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.touched">
-                
               <span *ngIf="form.get('email')?.errors?.['pattern']">
                 Enter a valid email address
               </span>
@@ -64,6 +61,7 @@
             </mat-form-field>
           </div>
         </div>
+
         <div class="row">
           <div class="col-lg-6">
             <mat-form-field class="full-width">
@@ -82,6 +80,7 @@
                <textarea matInput formControlName="remarks" rows="1"></textarea>
             </mat-form-field>
           </div>
+          
           <div class="row">
             <div class="col-md-6 d-flex align-items-center">
               <mat-checkbox formControlName="isPrimaryContact" >

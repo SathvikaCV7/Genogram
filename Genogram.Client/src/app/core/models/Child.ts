@@ -10,9 +10,7 @@ export interface Child {
     image?: string; 
     relationships?: { $values: Relationship[] };
   }
-  export interface ChildrenResponse {
-    $values: Child[];  // Array of Child objects
-  }
+
   
   
   

@@ -134,13 +134,12 @@ export class RelationshipTableComponent {
     if (this.childId != undefined) {
       const dialogRef = this.dialog.open(ShowGenogramComponent, {
         width: '850px',
-        height: '600px',
+        height: '590px',
         data: {
           relationships:this.dataSource,
           childId: this.childId,
           childName:this.childName
         }
-
       });
       dialogRef.afterClosed().subscribe((result) => {
         console.log('Genogram dialog closed', result);
@@ -148,11 +147,8 @@ export class RelationshipTableComponent {
     }
   }
 
-  onDelete(relationship:Relationship) {
-    
+  onDelete(relationship:Relationship) { 
     const id=this.getIdByName(relationship);
-    
-    debugger;
     console.log(id);
     this.relationshipService.deleteRelationship(id).subscribe((res) => {
       debugger;
@@ -160,7 +156,7 @@ export class RelationshipTableComponent {
       this.dataSource = [...this.dataSource];
       this.toastr.success("Relation Deleted Successfully");
       setTimeout(() => {
-        location.reload(); // Reload the page after 2 seconds
+        location.reload(); 
       }, 2000);
     }
     )

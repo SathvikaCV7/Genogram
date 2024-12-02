@@ -4,7 +4,7 @@ import { ChildDetailsService } from '../../../core/services/child-details.servic
 import { Child } from '../../../core/models/Child';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AddOrEditChildComponent } from '../add-or-edit-child/add-or-edit-child.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-child-list',
   standalone: true,
-  imports: [MatButtonModule,CommonModule,MatCardModule,MatTableModule,MatIconModule],
+  imports: [RouterLink,MatButtonModule,CommonModule,MatCardModule,MatTableModule,MatIconModule],
   templateUrl: './child-list.component.html',
   styleUrl: './child-list.component.scss'
 })

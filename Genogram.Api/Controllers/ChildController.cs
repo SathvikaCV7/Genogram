@@ -1,8 +1,10 @@
 ﻿using Genogram.Domain.DTOs;
 using Genogram.Domain.Entities;
-using Genogram.Domain.Interfaces.IRepository;
 using Genogram.Domain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Genogram.Api.Controllers
 {
@@ -10,48 +12,83 @@ namespace Genogram.Api.Controllers
     [ApiController]
     public class ChildController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IChildService _childService;
 
-        public ChildController(IUnitOfWork unitOfWork,IChildService childService)
+        public ChildController(IChildService childService)
         {
-            _unitOfWork = unitOfWork;
             _childService = childService;
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Child>> GetChildAsync(int id)
         {
-            var child = await _unitOfWork.Children.GetByIdAsync(c => c.Id == id, c => c.Relationships);
-            if (child == null)
-                return NotFound();
-            return child;
+            try
+            {
+                var child = await _childService.GetChildByIdAsync(id);
+                if (child == null)
+                    return NotFound(new { message = "Child not found." });
+                return Ok(child); 
+            }
+            catch (Exception ex)
+            {
+               
+                return StatusCode(500, new { message = "An error occurred while retrieving the child." });
+            }
         }
 
         [HttpGet("GetAllChildren")]
         public async Task<ActionResult<IEnumerable<Child>>> GetAllChildrenAsync()
         {
-            var children = await _unitOfWork.Children.GetAllAsync(); 
-            if (children == null || !children.Any())
-                return NotFound(new { message = "No children found." });
+            try
+            {
+                var children = await _childService.GetAllChildrenAsync();
+                if (children == null || !children.Any())
+                    return NotFound(new { message = "No children found." });
 
-            return Ok(children); 
+                return Ok(children); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while retrieving the children." });
+            }
         }
 
         [HttpPost("CreateChild")]
         public async Task<ActionResult> CreateChildAsync(ChildDto childDto)
         {
-            await _childService.AddChildAsync(childDto);
-            return Ok(new { message="Child Created Successfully" });
+            try
+            {
+                if (childDto == null)
+                {
+                    return BadRequest(new { message = "Child data is required." });
+                }
+
+                await _childService.AddChildAsync(childDto);
+                return Ok(new { message = "Child created successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while creating the child." });
+            }
         }
 
         [HttpPost("EditChild")]
-        public async Task<ActionResult> EditChildAsync(Child child)
+        public async Task<ActionResult> EditChildAsync(ChildDto childDto)
         {
-            await _unitOfWork.Children.UpdateAsync(child);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok(new { message="Child Updated Successfully"});
-        }
+            try
+            {
+                if (childDto == null || childDto.Id <= 0)
+                {
+                    return BadRequest(new { message = "Invalid child data." });
+                }
 
+                await _childService.UpdateChildAsync(childDto);
+                return Ok(new { message = "Child updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while updating the child." });
+            }
+        }
     }
 }

@@ -34,8 +34,6 @@ namespace Genogram.Infrastructure.Data
                 Language = "English",
                 DateOfBirth = "1985-01-01",
                 Image = "cvbnm"
-
-
             });
             modelBuilder.Entity<Relationship>().HasData(
 

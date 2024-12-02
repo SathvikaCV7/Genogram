@@ -34,6 +34,7 @@ export class ChildDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     const childId = this.route.snapshot.paramMap.get('childId')|| '1';
+    debugger;
     this.childDetailsService.getChild(childId).subscribe((child)=>{
       this.child = child;
       this.childId=child.id;

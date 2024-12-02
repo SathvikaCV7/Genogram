@@ -115,7 +115,12 @@ export class ShowGenogramComponent {
   closeGenogram() {
     this.dialogRef.close();
   }
- 
+  layoutSettings = {
+    orientation: 'TB', // Top to Bottom layout
+    edgePadding: 50,   // Padding between edges and nodes
+    rankPadding: 100,  // Space between nodes vertically
+    nodePadding: 20    // Padding inside the nodes
+  };
 }
 
 

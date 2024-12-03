@@ -1,8 +1,8 @@
 <div class="diaglogbox container">
   <h2 mat-dialog-title>{{ child ? 'Edit Child Details' : 'Add New Child' }}</h2>
 
-  <div class="form-elements">
-    <mat-dialog-content>
+  <div >
+    <mat-dialog-content class="form-elements">
       <form [formGroup]="form">
         <div class="row">
           <div class="col-lg-6">
@@ -80,11 +80,11 @@
     </mat-dialog-content>
   </div>
 
-  <mat-dialog-actions class="row g-3">
-    <div class="col-md-6">
+  <mat-dialog-actions class="row">
+    <div class="col-md-6 cncle-btn">
       <button mat-raised-button class="btn btn-secondary w-100" color="warn" (click)="onCancel()">Cancel</button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 sbt-btn">
       <button mat-raised-button class="btn btn-primary w-100 save-btn" (click)="onSubmit()">
         Save
       </button>

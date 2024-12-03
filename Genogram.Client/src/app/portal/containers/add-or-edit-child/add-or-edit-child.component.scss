@@ -17,7 +17,7 @@
   }
 
   .form-label{
-    margin-bottom: -0.5rem ;
+    margin-bottom: -0.3rem ;
   }
 
   .dialogbox-container {
@@ -27,9 +27,20 @@
   .full-width {
     width: 100%;
   }
-  
+  .cncle-btn{
+    padding-left: 3px;
+  }
+  .sbt-btn{
+    padding-right: 3px;
+  }
   mat-dialog-actions button {
     height: 48px;
   }
   
- 
+ .form-control{
+  line-height:1.05em !important;
+ }
+
+ .form-elements{
+  padding: 13px !important;
+ }

@@ -1,6 +1,8 @@
 <div class="button-group">
-    <button mat-raised-button class="add-buton" color="accent" (click)="onAdd()"><mat-icon>add</mat-icon>Add Relationship</button>
-    <button mat-raised-button class="genogram-button" (click)="onGenogram()"><mat-icon> zoom_out_map</mat-icon>Genogram</button>
+    <button mat-raised-button class="add-buton" style=" background-color: #19485F;
+  color: #d3c0aa;" (click)="onAdd()"><mat-icon>add</mat-icon>Add Relationship</button>
+    <button mat-raised-button style="color:#19485F;
+  background-color: #d3c0aa;" class="genogram-button" (click)="onGenogram()"><mat-icon> zoom_out_map</mat-icon>Genogram</button>
   </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="actions">

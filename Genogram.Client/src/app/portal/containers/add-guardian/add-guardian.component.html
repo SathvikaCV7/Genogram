@@ -2,7 +2,7 @@
   <h2 mat-dialog-title *ngIf="!relationship">Add New Guardian</h2>
   <h2 mat-dialog-title *ngIf="relationship">Edit Guardian Details</h2>
   <div class="form-elements">
-    <mat-dialog-content>
+    <mat-dialog-content  class="form-elements">
       <form [formGroup]="form">
         <div class="row">
           <div class="col-lg-6">
@@ -99,7 +99,7 @@
     </div>
     <div class="col-md-6">
       <button mat-raised-button class="btn btn-primary w-100" color="primary" (click)="onSubmit()">
-        Submit
+        Save
       </button>
     </div>
   </mat-dialog-actions>

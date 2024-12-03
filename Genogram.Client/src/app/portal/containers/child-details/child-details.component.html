@@ -27,7 +27,7 @@
           </span>
           <br />
           <span class="icon-text">
-            <mat-icon>my_location</mat-icon> <strong>Address Link:</strong>
+            <mat-icon>my_location</mat-icon> 
             <a [href]="getGoogleMapsLink(child?.address)" target="_blank">In Google Maps</a>
           </span>
         </p>
@@ -49,7 +49,7 @@
       </div>
     </div>
   </mat-card>
-  <mat-tab-group [selectedIndex]="selectedTabIndex" color="accent">
+  <mat-tab-group [selectedIndex]="selectedTabIndex" style="color:#19485F;">
     <mat-tab label="Admissions" [disabled]="activeTab !== 0"></mat-tab>
     <mat-tab label="Counselling" [disabled]="activeTab !== 1"></mat-tab>
     <mat-tab label="Guardians" [disabled]="activeTab !== 2">

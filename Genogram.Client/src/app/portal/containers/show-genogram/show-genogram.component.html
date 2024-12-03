@@ -1,50 +1,29 @@
-<div class="genogram-container">
-  <div class="genogram-header">
-    <h2>Genogram {{ childName }}</h2>
-    <button class="close-button" (click)="closeGenogram()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<div>
+  <mat-card >
+    <h1>Genogram - {{childName}}</h1>
+    <mat-icon class="close-icon" (click)="closeGenogram()">close</mat-icon>
+  </mat-card>
+  
   <div class="genogram-graph" >
-    <ngx-graph
-  [view]="[850, 600]"
-  [links]="links"
-  [nodes]="nodes"
-  [curve]="curve"
-  [layoutSettings]="layoutSettings" 
-  layout="dagreCluster"
-  class="chart-container"
->
-  <ng-template #defsTemplate>
-    <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
-      <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
-    </svg:marker>
-  </ng-template>
+
+    <ngx-graph [view]="[850,600]" [layoutSettings]="layoutSettings" [links]="links" [nodes]="nodes" layout="dagreCluster" >
+    <ng-template #defsTemplate>
+      <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+        <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+      </svg:marker>
+    </ng-template>
  
-  <ng-template #clusterTemplate let-cluster>
-    <svg:g class="node cluster">
-      <svg:rect
-        rx="5"
-        ry="5"
-        [attr.width]="cluster.dimension.width"
-        [attr.height]="cluster.dimension.height"
-        [attr.fill]="cluster.data.color"
-      />
-    </svg:g>
-  </ng-template>
- 
-  <ng-template #nodeTemplate let-node>
-    <svg:g class="node">
-      <svg:rect
-        [attr.width]="node.dimension.width"
-        [attr.height]="node.dimension.height"
-        [attr.fill]="node.id === 'child' ? '#ff4081' : 'rgb(241, 202, 222)'"
-        stroke="#000000"
-        stroke-width="1"
-        rx="5"
-        ry="5"
-      ></svg:rect>  
-      <svg:image
+    <ng-template #nodeTemplate let-node>
+      <svg:g class="node">
+        <rect [attr.width]="node.dimension?.width"
+              [attr.height]="node.dimension?.height || 60"
+              [attr.fill]="node.id === 'child' ? '#ff4081' : 'rgb(241, 202, 222)'"
+              rx="5" ry="5"
+              stroke="#000000"
+              stroke-width="1">
+        </rect>
+   
+        <svg:image
         *ngIf="node.icon"
         [attr.href]="node.icon"
         x="5" 
@@ -52,13 +31,14 @@
         width="20"
         height="20"
       ></svg:image>
+   
       <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2">
         {{ node.label }}
       </svg:text>
-    </svg:g>
-  </ng-template>
-  
-  <ng-template #linkTemplate let-link>
+      </svg:g>
+    </ng-template>
+
+   <ng-template #linkTemplate let-link>
     <svg:g class="edge">
       <svg:path class="line" stroke-width="2" marker-end="url(#arrow)"></svg:path>
       <svg:text class="edge-label" text-anchor="middle">
@@ -73,6 +53,7 @@
       </svg:text>
     </svg:g>
   </ng-template>
-</ngx-graph>
-  </div>
 
+  </ngx-graph>
+ </div>
+</div>

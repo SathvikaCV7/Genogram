@@ -1,7 +1,7 @@
 <div class="header-container">
   <div class="left-header">
     <mat-icon>account_tree</mat-icon>
-    <h2>Genogram</h2>
+    <h2>Child Care Centre</h2>
   </div>
   <div class="right-header">
     <a  [routerLink]="'/child-list'">
@@ -14,12 +14,12 @@
   <mat-card class="profile-card">
     <div class="header">
       <div class="profile-image" >
-        <img [src]="image" alt="Child" />
+        <img [src]="image ? image : 'assets/images/noimage.jpg'" alt="Child Image" class="child-image" />
       </div>
       <div class="info">
         <p>
           <span class="icon-text">
-            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child?.name }}<a (click)="onEditChild(child)" *ngIf="childId==1"><mat-icon>edit</mat-icon></a>
+            <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child?.name }}<a (click)="onEditChild(child)"><mat-icon>edit</mat-icon></a>
           </span>
           <br />
           <span class="icon-text">

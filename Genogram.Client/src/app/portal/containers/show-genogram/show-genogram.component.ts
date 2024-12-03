@@ -37,7 +37,7 @@ export class ShowGenogramComponent {
 
   initializeGenogram() {
     
-    const padding = 40;
+    const padding = 30;
     const childWidth = this.calculateTextWidth(this.childName) + padding;
     const childHeight = 30;
  
@@ -106,20 +106,19 @@ export class ShowGenogramComponent {
   
  
   calculateTextWidth(text: string ): number {
-   const baseWidth=55;
    const labelWidth=text.length*8;
    return labelWidth;
-
   }
   
   closeGenogram() {
     this.dialogRef.close();
   }
+
   layoutSettings = {
-    orientation: 'TB', // Top to Bottom layout
-    edgePadding: 50,   // Padding between edges and nodes
-    rankPadding: 100,  // Space between nodes vertically
-    nodePadding: 20    // Padding inside the nodes
+    orientation: 'TB', 
+    edgePadding: 50,   
+    rankPadding: 100, 
+    nodePadding: 20    
   };
 }
 

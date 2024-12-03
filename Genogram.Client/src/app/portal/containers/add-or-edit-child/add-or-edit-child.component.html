@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6">
+          
             <div class="col-lg-6">
               <mat-form-field class="full-width">
                 <mat-label>Nationality</mat-label>
@@ -44,7 +44,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-          </div>
+          
 
           <div class="col-lg-6">
             <mat-form-field class="full-width">
@@ -69,9 +69,7 @@
                 Date of Birth is required
               </mat-error>
             </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
+          </div>       
         <div class="col-md-6">
           <label for="imageUpload" class="form-label">Upload Image</label>
           <input type="file" id="imageUpload" class="form-control" (change)="onFileChange($event)" accept="image/*"
@@ -87,8 +85,8 @@
       <button mat-raised-button class="btn btn-secondary w-100" color="warn" (click)="onCancel()">Cancel</button>
     </div>
     <div class="col-md-6">
-      <button mat-raised-button class="btn btn-primary w-100" color="primary" (click)="onSubmit()">
-        Submit
+      <button mat-raised-button class="btn btn-primary w-100 save-btn" (click)="onSubmit()">
+        Save
       </button>
     </div>
   </mat-dialog-actions>

@@ -1,48 +1,29 @@
-<div class="main-container">
-<mat-card class="children-list-card">
-    <mat-card-header>
-      <mat-card-title>Children List</mat-card-title>
-      <mat-card-subtitle>Manage the list of children</mat-card-subtitle>
-    </mat-card-header>
-  
-    <div class="add-button-container">
-        <button mat-raised-button class="add-buton" color="accent" (click)="onAddChild()"><mat-icon>add</mat-icon>Add Child</button></div>
-
-    <mat-table [dataSource]="children" class="mat-elevation-z8">
-        <ng-container matColumnDef="image">
-            <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
-            <mat-cell *matCellDef="let child">
-              <img *ngIf="child.image" [src]="child.image" alt="Child's image" class="child-image"/>
-            </mat-cell>
-          </ng-container>
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let child"> <a [routerLink]="['/child', child.id]">{{child.name}}</a></mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="address">
-        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-        <mat-cell *matCellDef="let child"> {{child.address}} </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="nationality">
-        <mat-header-cell *matHeaderCellDef> Nationality </mat-header-cell>
-        <mat-cell *matCellDef="let child"> {{child.nationality}} </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="language">
-        <mat-header-cell *matHeaderCellDef> Language </mat-header-cell>
-        <mat-cell *matCellDef="let child"> {{child.language}} </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="dateOfBirth">
-        <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
-        <mat-cell *matCellDef="let child"> {{child.dateOfBirth | date: 'shortDate'}} </mat-cell>
-      </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  
-  </mat-card>
+<div class="header-container">
+  <div class="left-header">
+    <mat-icon>account_tree</mat-icon>
+    <h2>Child Care Centre</h2>
+  </div>
 </div>
+
+<div class="card child-details-card">
+  <div class="child-container">
+    <div class="children-display">
+      <h3>List of Children</h3>
+      <button mat-raised-button class="add-buton"(click)="onAddChild()"><mat-icon>add</mat-icon>Add</button>
+    </div>
+      <div class="child-grid">
+        <a
+          *ngFor="let child of children"
+          [routerLink]="['/child', child.id]" 
+        >
+          <div class="child-card">
+            <img [src]="child.image ? child.image : 'assets/images/noimage.jpg'" alt="Child Image" class="child-image" />
+            <div class="child-info">
+              <h4 role="button">{{ child.name }}</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+

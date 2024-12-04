@@ -64,7 +64,6 @@ export class ShowGenogramComponent {
       ) {
         this.parents.push(nodeId);
       }
-  
       const label = `${relationship.firstName} ${relationship.lastName}`;
       const nodeWidth = this.calculateTextWidth(label) + padding;
       const nodeHeight = 30; 

@@ -42,8 +42,9 @@ body {
   padding: 25px;
   background-color: #FFFFFF; 
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #19485F;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  // border: 1px solid #19485F;
+
 }
 
 .children-display {
@@ -55,10 +56,15 @@ body {
   color: #19485F;
   border-radius: 8px;
   margin-bottom: 20px;
+  
+}
+.child-card{
+  height: 280px;
 }
 
 .child-grid a{
   text-decoration:none;
+
 }
 .children-display h3 {
   margin: 0;
@@ -67,17 +73,21 @@ body {
   width: 100%; 
 }
 
-.add-buton{
+.add-buton {
   padding: 20px 20px;
   color: #19485F; 
-  cursor: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .add-buton:hover {
   background-color: #19485F; 
   color: #d3c0aa; 
-  border: 2px solid #d3c0aa; 
+  
+  cursor: pointer;
 }
+
+
 
 
 .child-grid {
@@ -88,17 +98,17 @@ body {
 
 .child-card {
   background-color: #F9F9F9; /* Cream background */
-  border-bottom: 3px solid #19485F; /* Warm Beige border */
+  // border-bottom: 3px solid #19485F; /* Warm Beige border */
   // border-top:1px solid #997ccf ;
   // border-left:3px solid #997ccf ;
-  border-right:3px solid #19485F ;
+  // border-right:3px solid #19485F ;
   border-radius: 8px;
   text-align: center;
   width: 100%;
   max-width: 280px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: inherit;
+  cursor: pointer;
 }
 
 .child-card:hover {
@@ -108,8 +118,7 @@ body {
 
 .child-image {
   width: 200px;
-  height: 250px;
-  max-height: 150px;
+  height: 220px;
   border-radius: 2px;
   margin-bottom: 15px;
   object-fit: cover;

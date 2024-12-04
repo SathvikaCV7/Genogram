@@ -39,8 +39,11 @@
   color: #d3c0aa;
 }
 
-a {
+.a-link {
   cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  color: #cb9191;
 }
 .chat{
   color:#19485F;
@@ -50,10 +53,7 @@ th {
   font-weight: bolder;
   text-align: left; /* Align header text to the left for readability */
 }
-.a-link{
-  text-decoration: underline;
-  color:blue;
-}
+
 .firstname {
   color: #19485F;
 }

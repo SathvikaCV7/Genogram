@@ -127,14 +127,15 @@ button:hover {
 
   .info,
   .details {
-    text-align: center;
-    flex: none;
-    margin-top: 20px; /* Adjusted spacing */
+   margin-left: 280px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 20px;
   }
 
   .icon-text {
-    justify-content: center; /* Center-align icons and text */
-    text-align: center;
+   
     gap: 10px; /* Adjust spacing for smaller viewports */
   }
 

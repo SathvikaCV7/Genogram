@@ -1,12 +1,57 @@
-
 .diaglogbox {
-    padding: 16px;
-    background-color:#eaeaef; 
-  }
-  .form-elements{
-    display: flex;
-    justify-content: space-evenly;
-  }
+  padding: 16px;
+  background-color:#eaeaef; 
+}
 
-  
- 
+
+.full-width{
+  width:210px;
+}
+
+.save-btn{
+  color:white;
+  background-color: #19485F;
+}
+
+.form-label{
+  margin-bottom: -0.3rem ;
+}
+
+.diaglogbox-container {
+  box-sizing: border-box;
+  background-color: #ede8e1;
+}
+
+.full-width {
+  width: 100%;
+}
+.cncle-btn{
+  padding-left: 17px;
+    width: 289px;
+}
+.sbt-btn{
+  padding-right: 17px;
+  width: 292px;
+}
+mat-dialog-actions button {
+  height: 48px;
+}
+
+.form-control{
+line-height:1.05em !important;
+}
+.act{
+  padding-bottom: 20px;
+}
+.form-elements{
+padding: 25px !important;
+}
+.preview-img{
+height:150px;
+width:258px;
+
+}
+
+mat-card{
+height: 269px;
+}

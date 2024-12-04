@@ -1,24 +1,20 @@
 <div class="diaglogbox container">
   <h2 mat-dialog-title>{{ child ? 'Edit Child Details' : 'Add New Child' }}</h2>
 
-  <div >
+  <div>
     <mat-dialog-content class="form-elements">
       <form [formGroup]="form">
         <div class="row">
           <div class="col-lg-6">
             <mat-form-field class="full-width">
-              <mat-label> Name</mat-label>
+              <mat-label>Name</mat-label>
               <input matInput formControlName="name" />
               <mat-error *ngIf="form.get('name')?.errors && form.get('name')?.touched">
-                <span *ngIf="form.get('name')?.errors?.['required']">
-                  First name is required.
-                </span>
+                <span *ngIf="form.get('name')?.errors?.['required']">First name is required.</span>
                 <span *ngIf="form.get('name')?.errors?.['minlength']">
                   First name must be at least 3 characters long.
                 </span>
-                <span *ngIf="form.get('name')?.errors?.['pattern']">
-                  Enter only Letters
-                </span>
+                <span *ngIf="form.get('name')?.errors?.['pattern']">Enter only Letters</span>
               </mat-error>
             </mat-form-field>
           </div>
@@ -27,33 +23,27 @@
             <mat-form-field class="full-width">
               <mat-label>Address</mat-label>
               <input matInput formControlName="address" />
-              <mat-error *ngIf="form.get('address')?.hasError('required')">
-                Last Name is required
-              </mat-error>
+              <mat-error *ngIf="form.get('address')?.hasError('required')">Last Name is required</mat-error>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          
-            <div class="col-lg-6">
-              <mat-form-field class="full-width">
-                <mat-label>Nationality</mat-label>
-                <input matInput formControlName="nationality" />
-                <mat-error *ngIf="form.get('nationality')?.hasError('required')">
-                  Last Name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-          
+          <div class="col-lg-6">
+            <mat-form-field class="full-width">
+              <mat-label>Nationality</mat-label>
+              <input matInput formControlName="nationality" />
+              <mat-error *ngIf="form.get('nationality')?.hasError('required')">Last Name is required</mat-error>
+            </mat-form-field>
+          </div>
 
           <div class="col-lg-6">
             <mat-form-field class="full-width">
               <mat-label>Language</mat-label>
-              <input matInput type="text" formControlName="language" />
+              <mat-select formControlName="language">
+                <mat-option *ngFor="let lang of languages" [value]="lang">{{ lang }}</mat-option>
+              </mat-select>
               <mat-error *ngIf="form.get('language')?.errors && form.get('language')?.touched">
-                <span *ngIf="form.get('language')?.errors?.['pattern']">
-                  Enter a valid email address
-                </span>
+                <span *ngIf="form.get('language')?.errors?.['required']">Language is required</span>
               </mat-error>
             </mat-form-field>
           </div>
@@ -65,15 +55,31 @@
               <input matInput [matDatepicker]="myDatePicker" formControlName="dateOfBirth" />
               <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
               <mat-datepicker #myDatePicker></mat-datepicker>
-              <mat-error *ngIf="form.get('dateOfBirth')?.hasError('required')">
-                Date of Birth is required
-              </mat-error>
+              <mat-error *ngIf="form.get('dateOfBirth')?.hasError('required')">Date of Birth is required</mat-error>
             </mat-form-field>
-          </div>       
-        <div class="col-md-6">
-          <label for="imageUpload" class="form-label">Upload Image</label>
-          <input type="file" id="imageUpload" class="form-control" (change)="onFileChange($event)" accept="image/*"
-            formControlName="image" />
+          </div>
+          <div class="col-md-6">
+           
+
+            <div *ngIf="!base64Image">
+               <label for="imageUpload" class="form-label">Upload Image</label>
+              <input
+                type="file"
+                id="imageUpload"
+                class="form-control"
+                (change)="onFileChange($event)"
+                accept="image/*"
+                formControlName="image"
+              />
+            </div>
+
+            <div *ngIf="base64Image" class="image-preview">
+              <button mat-icon-button class="close-btn"  (click)="removeImage()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <img [src]="base64Image" alt="Selected Image" class="preview-img" />
+              
+            </div>
           </div>
         </div>
       </form>
@@ -85,9 +91,7 @@
       <button mat-raised-button class="btn btn-secondary w-100" color="warn" (click)="onCancel()">Cancel</button>
     </div>
     <div class="col-md-6 sbt-btn">
-      <button mat-raised-button class="btn btn-primary w-100 save-btn" (click)="onSubmit()">
-        Save
-      </button>
+      <button mat-raised-button class="btn btn-primary w-100 save-btn" (click)="onSubmit()">Save</button>
     </div>
   </mat-dialog-actions>
 </div>

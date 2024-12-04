@@ -80,9 +80,11 @@ export class ChildDetailsComponent implements OnInit {
         if (isChanged) {
           result.id = child?.id; 
           this.childDetailsService.updateChild(result).subscribe((res)=>{
-           
               this.child = result; 
               this.toastr.success('Child details updated successfully.');
+              setTimeout(() => {
+                location.reload(); 
+              }, 1000);
           })
           
         } else {

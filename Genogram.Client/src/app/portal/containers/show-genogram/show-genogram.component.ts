@@ -41,12 +41,11 @@ export class ShowGenogramComponent {
     const childWidth = this.calculateTextWidth(this.childName) + padding;
     const childHeight = 30;
  
-
     this.nodes.push({
       id: 'child',
       label: this.childName,
       dimension: { width: childWidth ,height:childHeight},
-      icon: 'assets/images/child_icon1.svg',
+      icon: 'assets/images/child.svg',
     });
   
     this.relationships.forEach((relationship) => {
@@ -73,7 +72,7 @@ export class ShowGenogramComponent {
         id: nodeId,
         label: label,
         dimension: { width: nodeWidth, height: nodeHeight },
-        icon: 'assets/images/user2.svg',
+        icon: 'assets/images/user.svg',
       });
   
       this.links.push({

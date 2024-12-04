@@ -17,10 +17,10 @@
       <svg:g class="node">
         <rect [attr.width]="node.dimension?.width"
               [attr.height]="node.dimension?.height || 60"
-              [attr.fill]="node.id === 'child' ? '#ff4081' : 'rgb(241, 202, 222)'"
+              [attr.fill]="node.id === 'child' ? '#19485F' : '#d3c0aa'"
               rx="5" ry="5"
-              stroke="#000000"
-              stroke-width="1">
+              [attr.stroke]="node.id === 'child' ? '#d3c0aa' : '#19485F'"
+              stroke-width="2">
         </rect>
    
         <svg:image
@@ -32,7 +32,7 @@
         height="20"
       ></svg:image>
    
-      <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2">
+      <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2"  [attr.fill]="node.id === 'child' ? '#d3c0aa' : '#19485F'">
         {{ node.label }}
       </svg:text>
       </svg:g>

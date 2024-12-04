@@ -1,15 +1,31 @@
 .button-group {
   display: flex;
   align-items: center;
-
   justify-content: flex-start;
-  gap: 15px;
-  padding: 3px; 
-  margin: 20px; 
+  gap: 15px; /* Spacing between buttons */
+  padding: 3px;
+  margin: 20px;
+}
+
+.button-group button {
+  padding: 10px 20px; /* Consistent padding for buttons */
+  font-size: 16px; /* Fixed font size for text */
+  min-width: 150px; /* Ensure buttons have a minimum width */
+  border-radius: 5px; /* Rounded corners for consistent styling */
+  flex-shrink: 0; /* Prevent buttons from shrinking on small screens */
+}
+
+.button-group mat-icon {
+  vertical-align: middle; /* Aligns icon vertically with the text */
+  margin-right: 8px;
+  color:#19485F; /* Adds spacing between icon and text */
+}
+.more_verti{
+  color:#19485F;
 }
 .custom-search {
-  flex: 1; 
-  max-width: 250px;
+  flex: 1;
+  max-width: 250px; /* Ensure search input is responsive */
 }
 
 .small-search-input {
@@ -17,21 +33,47 @@
 }
 
 .small-margin {
-  margin-left: 15px; 
+  margin-left: 15px;
 }
-
-
-
+.add-icon{
+  color: #d3c0aa;
+}
 
 a {
   cursor: pointer;
-  text-decoration: none; 
+}
+.chat{
+  color:#19485F;
 }
 
-th{
+th {
   font-weight: bolder;
+  text-align: left; /* Align header text to the left for readability */
+}
+.a-link{
+  text-decoration: underline;
+  color:blue;
+}
+.firstname {
+  color: #19485F;
 }
 
-.firstname{
-  font-weight: bolder;
+@media (max-width: 850px) {
+  .button-group {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Ensure buttons take full width */
+    gap: 15px; /* Reduce spacing between buttons */
+    margin: 15px 0;
+  }
+
+  .button-group button {
+    width: 100%; /* Buttons take full width of their container */
+    max-width: none; /* Remove maximum width restriction */
+    padding: 12px 20px; /* Increase padding slightly for better touch targets */
+    font-size: 16px; /* Keep font size consistent */
+  }
+
+  .button-group mat-icon {
+    margin-right: 8px; /* Maintain spacing for icons */
+  }
 }

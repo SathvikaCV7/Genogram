@@ -40,7 +40,6 @@ export class ShowGenogramComponent {
     const childWidth = this.calculateTextWidth(this.childName) + padding;
     const childHeight = 30;
   
-    // Add the child node
     this.nodes.push({
       id: 'child',
       label: this.childName,
@@ -49,10 +48,24 @@ export class ShowGenogramComponent {
       rank: 'second',
     });
   
+    this.relationships.sort((a, b) => {
+      
+      const priorityOrder: { [key: string]: number } = {
+        mother: 1,
+        sister: 2,
+        brother: 3,
+        father: 4,
+      };
+      const priorityA = priorityOrder[a.relationshipType.toLowerCase()] || 99; 
+      const priorityB = priorityOrder[b.relationshipType.toLowerCase()] || 99;
+
+      return priorityA - priorityB;
+    });
+    
     this.relationships.forEach((relationship) => {
       const relationshipType = relationship.relationshipType.toLowerCase();
       const nodeId = `${relationshipType}-${relationship.id}`;
-  
+      const primary=relationship.isPrimaryContact;
       if (!this.relationshipTypeCount[relationshipType]) {
         this.relationshipTypeCount[relationshipType] = 0;
       }
@@ -69,47 +82,51 @@ export class ShowGenogramComponent {
       const nodeWidth = this.calculateTextWidth(label) + padding;
       const nodeHeight = 30;
   
-      // Add the relationship node
       this.nodes.push({
         id: nodeId,
         label: label,
         dimension: { width: nodeWidth, height: nodeHeight },
-        icon: 'assets/images/user.svg',
+        icon: primary? 'assets/images/primary_contact.svg':'assets/images/user.svg',
+        primary:primary
       });
   
-      // Handle link creation for Guardians, Grandparents, and other relations
       const isAbove = ['grandfather', 'grandmother', 'guardian'].includes(relationshipType);
       const sourceId = isAbove ? nodeId : 'child';
       const targetId = isAbove ? 'child' : nodeId;
-  
-      // Create the link based on relationship type
+      const reverseArrow=isAbove?true:false;
+
+      const labelForLink=primary? relationship.relationshipType+" (P)":relationship.relationshipType
+
       this.links.push({
         id: `link-${nodeId}-${this.relationshipTypeCount[relationshipType]}`,
         source: sourceId,
         target: targetId,
-        label: relationship.relationshipType.toUpperCase(),
+        label: labelForLink,
+        reverseArrow:reverseArrow,
+        primary:primary
       });
     });
   
-    // Handle sibling (brother/sister) relationships
     this.relationships
-      .filter(
-        (relationship) =>
-          relationship.relationshipType.toLowerCase() === 'sister' ||
-          relationship.relationshipType.toLowerCase() === 'brother'
-      )
-      .forEach((relationship) => {
-        const relationshipType = relationship.relationshipType.toLowerCase();
-        const nodeId = `${relationshipType}-${relationship.id}`;
-        this.parents.forEach((parentNodeId: string) => {
-          this.links.push({
-            id: `sibling-${nodeId}-${parentNodeId}`,
-            source: parentNodeId,
-            target: nodeId,
-            label: parentNodeId.split('-')[0].toUpperCase(),
-          });
-        });
+  .filter(
+    (relationship) =>
+      relationship.relationshipType.toLowerCase() === 'sister' ||
+      relationship.relationshipType.toLowerCase() === 'brother'
+  )
+  .forEach((relationship) => {
+    const relationshipType = relationship.relationshipType.toLowerCase();
+    const nodeId = `${relationshipType}-${relationship.id}`;
+    this.parents.forEach((parentNodeId: string) => {
+      this.links.push({
+        id: `sibling-${nodeId}-${parentNodeId}`,
+        source: nodeId,
+        target: parentNodeId,
+        label: parentNodeId.split('-')[0].charAt(0).toUpperCase() + parentNodeId.split('-')[0].slice(1),
+        customPath: true
       });
+    });
+  });
+
   }
   
   
@@ -127,7 +144,7 @@ export class ShowGenogramComponent {
     orientation: 'TB', 
     edgePadding: 40,   
     rankPadding: 100, 
-    nodePadding: 20    
+    nodePadding: 50    
   };
 }
 

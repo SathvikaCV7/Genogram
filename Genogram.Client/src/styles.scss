@@ -2,3 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color: #f3ede6 ; }
+.mdc-checkbox__native-control {
+    background-color: #19485F !important; /* Change checkmark background */
+  }
+
+
+.custom-checkbox .mdc-checkbox__checkmark{ 
+    background: #19485F !important;
+    color: #d3c0aa !important;
+}

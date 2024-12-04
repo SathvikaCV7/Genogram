@@ -36,21 +36,23 @@ export class ShowGenogramComponent {
   parents: any[] = [];
 
   initializeGenogram() {
-    
     const padding = 30;
     const childWidth = this.calculateTextWidth(this.childName) + padding;
     const childHeight = 30;
- 
+  
+    // Add the child node
     this.nodes.push({
       id: 'child',
       label: this.childName,
-      dimension: { width: childWidth ,height:childHeight},
+      dimension: { width: childWidth, height: childHeight },
       icon: 'assets/images/child.svg',
+      rank: 'second',
     });
   
     this.relationships.forEach((relationship) => {
       const relationshipType = relationship.relationshipType.toLowerCase();
       const nodeId = `${relationshipType}-${relationship.id}`;
+  
       if (!this.relationshipTypeCount[relationshipType]) {
         this.relationshipTypeCount[relationshipType] = 0;
       }
@@ -58,15 +60,16 @@ export class ShowGenogramComponent {
   
       if (
         relationshipType === 'mother' ||
-        relationshipType === 'father' ||
-        relationshipType === 'grandfather' ||
-        relationshipType === 'grandmother'
+        relationshipType === 'father'
       ) {
         this.parents.push(nodeId);
       }
+  
       const label = `${relationship.firstName} ${relationship.lastName}`;
       const nodeWidth = this.calculateTextWidth(label) + padding;
-      const nodeHeight = 30; 
+      const nodeHeight = 30;
+  
+      // Add the relationship node
       this.nodes.push({
         id: nodeId,
         label: label,
@@ -74,14 +77,21 @@ export class ShowGenogramComponent {
         icon: 'assets/images/user.svg',
       });
   
+      // Handle link creation for Guardians, Grandparents, and other relations
+      const isAbove = ['grandfather', 'grandmother', 'guardian'].includes(relationshipType);
+      const sourceId = isAbove ? nodeId : 'child';
+      const targetId = isAbove ? 'child' : nodeId;
+  
+      // Create the link based on relationship type
       this.links.push({
-        id: `${nodeId}-${this.relationshipTypeCount[relationshipType]}`,
-        source: 'child',
-        target: nodeId,
+        id: `link-${nodeId}-${this.relationshipTypeCount[relationshipType]}`,
+        source: sourceId,
+        target: targetId,
         label: relationship.relationshipType.toUpperCase(),
       });
     });
   
+    // Handle sibling (brother/sister) relationships
     this.relationships
       .filter(
         (relationship) =>
@@ -94,13 +104,14 @@ export class ShowGenogramComponent {
         this.parents.forEach((parentNodeId: string) => {
           this.links.push({
             id: `sibling-${nodeId}-${parentNodeId}`,
-            source: nodeId,
-            target: parentNodeId,
+            source: parentNodeId,
+            target: nodeId,
             label: parentNodeId.split('-')[0].toUpperCase(),
           });
         });
       });
   }
+  
   
  
   calculateTextWidth(text: string ): number {
@@ -114,7 +125,7 @@ export class ShowGenogramComponent {
 
   layoutSettings = {
     orientation: 'TB', 
-    edgePadding: 50,   
+    edgePadding: 40,   
     rankPadding: 100, 
     nodePadding: 20    
   };

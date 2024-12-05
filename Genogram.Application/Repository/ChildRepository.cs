@@ -43,8 +43,6 @@ namespace Genogram.Application.Repository
             }
            
         }
-        
-
 
     }
 }

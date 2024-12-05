@@ -101,7 +101,8 @@ th {
     gap: 15px; /* Reduce spacing between buttons */
     margin: 15px 0;
   }
-  table.mat-elevation-z8 {
+
+  mat-table.mat-elevation-z8 {
     width: 100%; /* Maintain responsiveness */
     overflow-x: auto; /* Allow horizontal scrolling */
     display: block; /* Ensure proper rendering on smaller screens */
@@ -120,5 +121,28 @@ th {
   .mat-elevation-z8::-webkit-scrollbar-track {
     background: #d3c0aa; /* Background of scrollbar track */
   }
-}
 
+  /* Increase the width of header and content cells in phone mode */
+  mat-header-cell, mat-cell {
+    min-width: 180px; /* Ensure columns have a minimum width */
+    width: 180px; /* Explicitly set the width for both header and content */
+    display: table-cell; /* Ensure content is displayed correctly */
+  }
+
+  /* Increase the width for specific columns if needed */
+  .firstname, .relationshipType, .phoneNumber, .email, .isPrimaryContact, .remarks {
+    min-width: 220px; /* Increase width for specific columns */
+    width: 220px; /* Explicit width for specific columns */
+  }
+
+  /* Adjust font size for better readability on smaller screens */
+  mat-header-cell, .mat-cell {
+    font-size: 14px; /* Adjust font size for better readability */
+  }
+
+  /* Additional tweaks for specific columns */
+  .remarks {
+    min-width: 240px; /* Increase width for remarks column */
+    width: 240px; /* Explicit width for remarks column */
+  }
+}

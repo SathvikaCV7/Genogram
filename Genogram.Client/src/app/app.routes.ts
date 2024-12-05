@@ -4,19 +4,18 @@ import { ChildListComponent } from './portal/containers/child-list/child-list.co
 
 export const routes: Routes = [
     {
-        path:'child-list',
-        pathMatch:'full',
-        component:ChildListComponent
+        path: 'child-list',
+        pathMatch: 'full',
+        component: ChildListComponent
     },
     {
-        path: 'child/:childId',  
-        pathMatch:'full',
-        component: ChildDetailsComponent,  
+        path: 'child/:childId',
+        pathMatch: 'full',
+        component: ChildDetailsComponent,
     },
     {
-        path:'',
-        pathMatch:'full',
-        component:ChildDetailsComponent
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'child-list'
     },
-    
 ];

@@ -22,7 +22,9 @@ button{
 
 
 
-
+  .mat-mdc-dialog-surface,.mdc-dialog__surface{
+    overflow-y: hidden !important;
+  }
 
 
 

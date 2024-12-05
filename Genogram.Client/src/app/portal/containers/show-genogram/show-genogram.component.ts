@@ -135,7 +135,7 @@ export class ShowGenogramComponent {
   
  
   calculateTextWidth(text: string ): number {
-   const labelWidth=text.length*8;
+   const labelWidth=text.length*9;
    return labelWidth;
   }
   

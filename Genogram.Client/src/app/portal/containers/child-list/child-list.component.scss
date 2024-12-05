@@ -42,7 +42,7 @@ body {
   padding: 25px;
   background-color: #FFFFFF; 
   border-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 40px 40px rgba(17, 17, 17, 0.1);
   // border: 1px solid #19485F;
 
 }
@@ -72,6 +72,15 @@ body {
   text-align: center;
   width: 100%; 
 }
+.child-grid[_ngcontent-ng-c1531846615] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+}
+
+.child-grid[_ngcontent-ng-c1531846615] > * {
+  padding-bottom: 15px; /* Add 10px bottom padding to each grid item */
+}
 
 .add-buton {
   padding: 20px 20px;
@@ -98,7 +107,7 @@ body {
 
 .child-card {
   background-color: #F9F9F9; /* Cream background */
-  // border-bottom: 3px solid #19485F; /* Warm Beige border */
+  border-bottom: 3px solid #19485F; /* Warm Beige border */
   // border-top:1px solid #997ccf ;
   // border-left:3px solid #997ccf ;
   // border-right:3px solid #19485F ;

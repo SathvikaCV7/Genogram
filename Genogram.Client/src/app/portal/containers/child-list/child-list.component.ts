@@ -53,6 +53,9 @@ export class ChildListComponent {
             this.child = res; 
             this.toastr.success('Child added successfully.');
           });
+          setTimeout(() => {
+            location.reload(); 
+          }, 1000);
         }
       }
     );

@@ -1,5 +1,5 @@
-import { Component, inject, Input, SimpleChanges, ViewChild } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, inject, Input, SimpleChanges, ViewChild, OnInit } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { NameOf } from '../../../core/Utilities/name-of-helper';
@@ -15,34 +15,69 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToastrService } from 'ngx-toastr';
 import { RemarksDialogComponent } from '../remarks-dialog/remarks-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-
 
 @Component({
   selector: 'app-relationship-table',
   standalone: true,
-  imports: [MatMenuModule, CommonModule, MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatMenuModule,
+    CommonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSortModule,
+    MatPaginatorModule,
+  ],
   templateUrl: './relationship-table.component.html',
-  styleUrl: './relationship-table.component.scss'
+  styleUrl: './relationship-table.component.scss',
 })
-export class RelationshipTableComponent {
-  constructor(public dialog: MatDialog, private toastr: ToastrService) { }
+export class RelationshipTableComponent implements OnInit {
+  constructor(public dialog: MatDialog, private toastr: ToastrService) {}
 
   @Input() relationships: Relationship[] = [];
   @Input() childId: number | undefined;
-  @Input() childName:string|undefined;
-  @ViewChild(MatSort) sort!: MatSort;
+  @Input() childName: string | undefined;
 
-  displayedColumns: string[] = NameOf.those<Relationship>(['actions', 'firstName', 'lastName', 'relationshipType', 'phoneNumber', 'email', 'isPrimaryContact', 'remarks']);
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  displayedColumns: string[] = NameOf.those<Relationship>([
+    'actions',
+    'firstName',
+    'lastName',
+    'relationshipType',
+    'phoneNumber',
+    'email',
+    'isPrimaryContact',
+    'remarks',
+  ]);
 
   relationshipService = inject(RelationshipService);
   id: number | undefined;
-  dataSource: Relationship[] = [];
+  dataSource = new MatTableDataSource<Relationship>();
+
+  ngOnInit(): void {
+    this.dataSource.data = this.relationships;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['relationships']) {
-      this.dataSource = this.relationships || [];
+      this.dataSource.data = this.relationships || [];
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   onAdd(): void {
@@ -51,14 +86,14 @@ export class RelationshipTableComponent {
         width: '600px',
         data: {
           relationships: this.relationships,
-          relationshipTypes: Object.values(RelationshipTypes)
-        }
+          relationshipTypes: Object.values(RelationshipTypes),
+        },
       });
-  
+
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           if (result.isPrimaryContact) {
-            this.dataSource = this.dataSource.map(rel =>
+            this.dataSource.data = this.dataSource.data.map((rel) =>
               rel.id === result.id
                 ? { ...rel, ...result }
                 : { ...rel, isPrimaryContact: false }
@@ -66,17 +101,16 @@ export class RelationshipTableComponent {
           }
           result.childId = this.childId;
           this.relationshipService.addRelationship(result).subscribe(() => {
-            this.dataSource = [...this.dataSource, result];
-            this.toastr.success("Relation Added Successfully");
+            this.dataSource.data = [...this.dataSource.data, result];
+            this.toastr.success('Relation Added Successfully');
             setTimeout(() => {
-              location.reload(); 
+              location.reload();
             }, 2000);
           });
         }
       });
     }
   }
-  
 
   onEdit(relationship: Relationship): void {
     const originalData = { ...relationship };
@@ -86,13 +120,12 @@ export class RelationshipTableComponent {
       data: {
         relationship: relationship,
         relationshipTypes: Object.values(RelationshipTypes),
-        relationships: this.relationships
-      }
+        relationships: this.relationships,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-       
         const fieldsToCompare: (keyof Relationship)[] = [
           'firstName',
           'lastName',
@@ -100,25 +133,29 @@ export class RelationshipTableComponent {
           'isPrimaryContact',
           'email',
           'phoneNumber',
-          'remarks'
+          'remarks',
         ];
-        const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
+        const isChanged = fieldsToCompare.some(
+          (key) => originalData[key] !== result[key]
+        );
         if (isChanged) {
           if (result.isPrimaryContact) {
-            this.dataSource = this.dataSource.map(rel =>
+            this.dataSource.data = this.dataSource.data.map((rel) =>
               rel.id === result.id
-                ? { ...rel, ...result } 
+                ? { ...rel, ...result }
                 : { ...rel, isPrimaryContact: false }
             );
           }
           result.id = this.id;
           result.childId = this.childId;
-          this.relationshipService.updateRelationship(result).subscribe((response) => {
-            const index = this.dataSource.findIndex(item => item.id === result.id);
+          this.relationshipService.updateRelationship(result).subscribe(() => {
+            const index = this.dataSource.data.findIndex(
+              (item) => item.id === result.id
+            );
             if (index !== -1) {
-              this.dataSource[index] = result;
-              this.dataSource = [...this.dataSource];
-              this.toastr.success("Relation Updated Successfully")
+              this.dataSource.data[index] = result;
+              this.dataSource.data = [...this.dataSource.data];
+              this.toastr.success('Relation Updated Successfully');
             }
           });
         } else {
@@ -130,17 +167,14 @@ export class RelationshipTableComponent {
 
   onGenogram(): void {
     if (this.childId != undefined) {
-      const dialogRef = this.dialog.open(ShowGenogramComponent, {
+      this.dialog.open(ShowGenogramComponent, {
         width: '850px',
         height: '590px',
         data: {
-          relationships:this.dataSource,
+          relationships: this.dataSource.data,
           childId: this.childId,
-          childName:this.childName
-        }
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log('Genogram dialog closed', result);
+          childName: this.childName,
+        },
       });
     }
   }
@@ -148,35 +182,34 @@ export class RelationshipTableComponent {
   onDelete(relationship: Relationship): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '400px',
-      data: {}
     });
-  
+
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         const id = this.getIdByName(relationship);
         if (id !== undefined) {
           this.relationshipService.deleteRelationship(id).subscribe(() => {
-            this.dataSource = this.dataSource.filter((item) => item.id !== id);
-            this.dataSource = [...this.dataSource];
-            this.toastr.success("Relation Deleted Successfully");
+            this.dataSource.data = this.dataSource.data.filter(
+              (item) => item.id !== id
+            );
+            this.toastr.success('Relation Deleted Successfully');
           });
         }
       }
     });
   }
-  
 
   onRemarks(element: any): void {
     this.dialog.open(RemarksDialogComponent, {
       data: { remarks: element.remarks },
-      width: '400px', 
-      height:'150px'
+      width: '400px',
+      height: '150px',
     });
   }
 
   getIdByName(relationship: Relationship): number | undefined {
-    const foundRelationship = this.dataSource.find(
-      rel =>
+    const foundRelationship = this.dataSource.data.find(
+      (rel) =>
         rel.firstName === relationship.firstName &&
         rel.lastName === relationship.lastName &&
         rel.relationshipType === relationship.relationshipType &&
@@ -185,6 +218,4 @@ export class RelationshipTableComponent {
     );
     return foundRelationship ? foundRelationship.id : undefined;
   }
-  
-
 }

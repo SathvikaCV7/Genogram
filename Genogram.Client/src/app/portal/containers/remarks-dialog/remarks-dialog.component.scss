@@ -22,16 +22,20 @@
     font-weight: bold;
   }
   
-  .close-button {
-    background: none;
+  #close-button {
+    background-color: none !important;
     border: none !important;
     cursor: pointer;
     font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .close-button mat-icon {
+    color: #dc1212;
     font-size: 24px;
     vertical-align: middle;
   }
-  
+  mat-button{
+    background-color: none !important;
+    border: none !important;
+  }
+  mat-dialog-content{
+    color:black;
+  }
+ 

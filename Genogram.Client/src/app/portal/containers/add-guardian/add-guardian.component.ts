@@ -29,14 +29,14 @@ export class AddGuardianComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder
   ) {
-    debugger;
+   
     if (this.data && this.data.relationshipTypes) {
       this.relationshipTypes = this.data.relationshipTypes;
     }
   }
 
   ngOnInit(): void {
-    debugger;
+    
     this.relationshipTypes = this.data.relationshipTypes;
     this.relationships = this.data.relationships;
     this.relationship=this.data.relationship;

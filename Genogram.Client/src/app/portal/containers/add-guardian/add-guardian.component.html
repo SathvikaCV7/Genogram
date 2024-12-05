@@ -14,12 +14,13 @@
                 <span *ngIf="form.get('firstName')?.errors?.['required']">
                   First name is required.
                 </span>
-                <span *ngIf="form.get('firstName')?.errors?.['minlength']">
-                  First name must be at least 3 characters long.
-                </span>
                 <span *ngIf="form.get('firstName')?.errors?.['pattern']">
                   Enter only Letters
                 </span>
+                <span *ngIf="form.get('firstName')?.errors?.['minlength']">
+                  Minimum length is 3
+                </span>
+               
               </mat-error>
             </mat-form-field>
 

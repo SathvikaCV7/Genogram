@@ -20,10 +20,12 @@
     margin-bottom: -0.3rem ;
   }
   .close-btn{
-    margin-left: 215px;
-    position:absolute;
-    margin-top: -5px;
+    margin-left: 230px;
+    position:relative;
+    margin-top: -3px;
     color:red;
+    background-color: transparent;
+    border: none;
   }
 
   .dialogbox-container {
@@ -33,12 +35,7 @@
   .full-width {
     width: 100%;
   }
-  .cncle-btn{
-    padding-left: 3px;
-  }
-  .sbt-btn{
-    padding-right: 3px;
-  }
+ 
   mat-dialog-actions button {
     height: 48px;
   }
@@ -53,9 +50,31 @@
  .preview-img{
   height:150px;
   width:258px;
+  // position: relative;
   
  }
 
  mat-card{
   height: 269px;
  }
+
+ @media(max-width:850px){
+  .cncle-btn,.sbt-btn{
+    width:100%;
+    margin-bottom: 10px;
+
+  }
+  .close-btn {
+    margin-left: 250px;
+    position: absolute;
+    margin-top: -1px;
+    color: red;
+}
+  .image-preview{
+    height:150px;
+    width:200px;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+   }
+}

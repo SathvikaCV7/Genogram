@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToastrService } from 'ngx-toastr';
 import { RemarksDialogComponent } from '../remarks-dialog/remarks-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
 @Component({
@@ -78,7 +79,6 @@ export class RelationshipTableComponent {
   
 
   onEdit(relationship: Relationship): void {
-    debugger;
     const originalData = { ...relationship };
     this.id = relationship.id;
     const dialogRef = this.dialog.open(AddGuardianComponent, {
@@ -91,7 +91,6 @@ export class RelationshipTableComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      debugger;
       if (result) {
        
         const fieldsToCompare: (keyof Relationship)[] = [
@@ -104,7 +103,6 @@ export class RelationshipTableComponent {
           'remarks'
         ];
         const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
-        debugger;
         if (isChanged) {
           if (result.isPrimaryContact) {
             this.dataSource = this.dataSource.map(rel =>
@@ -147,20 +145,26 @@ export class RelationshipTableComponent {
     }
   }
 
-  onDelete(relationship:Relationship) { 
-    const id=this.getIdByName(relationship);
-    console.log(id);
-    this.relationshipService.deleteRelationship(id).subscribe((res) => {
-      debugger;
-      this.dataSource = this.dataSource.filter((item) => item.id !== id);
-      this.dataSource = [...this.dataSource];
-      this.toastr.success("Relation Deleted Successfully");
-      setTimeout(() => {
-        location.reload(); 
-      }, 2000);
-    }
-    )
+  onDelete(relationship: Relationship): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '400px',
+      data: {}
+    });
+  
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        const id = this.getIdByName(relationship);
+        if (id !== undefined) {
+          this.relationshipService.deleteRelationship(id).subscribe(() => {
+            this.dataSource = this.dataSource.filter((item) => item.id !== id);
+            this.dataSource = [...this.dataSource];
+            this.toastr.success("Relation Deleted Successfully");
+          });
+        }
+      }
+    });
   }
+  
 
   onRemarks(element: any): void {
     this.dialog.open(RemarksDialogComponent, {

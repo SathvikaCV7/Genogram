@@ -132,14 +132,16 @@ body {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .child-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .child-card {
     padding: 12px;
+    margin-bottom: 10px;
   }
 }
+
 
 @keyframes fadeIn {
   from {

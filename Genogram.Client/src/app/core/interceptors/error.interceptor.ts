@@ -5,12 +5,12 @@ import { throwError } from 'rxjs';
 import { inject } from '@angular/core';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  debugger;
+  
   const toastr = inject(ToastrService);
   return next(req).pipe(
    
     catchError((error) => {
-      debugger
+      
       if (error) {
         switch (error.status) {
           case 400:      

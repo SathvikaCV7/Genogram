@@ -13,15 +13,13 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item  (click)="onEdit(element)">
-          <mat-icon color="primary">edit</mat-icon>
-          <span color="primary">Edit</span>
+        <button mat-menu-item (click)="onEdit(element)" class="edit-text">
+          <mat-icon class="edit-text">edit</mat-icon>
+          Edit
         </button>
-        <button mat-menu-item color="warn" (click)="onDelete(element)">
-          <div>
-          <mat-icon  color="warn">delete</mat-icon>
-          <span color="primary">Delete</span>
-          </div>
+        <button mat-menu-item (click)="onDelete(element)" class="del-text">
+          <mat-icon class="del-text">delete</mat-icon>
+          Delete
         </button>
       </mat-menu>
     </td>

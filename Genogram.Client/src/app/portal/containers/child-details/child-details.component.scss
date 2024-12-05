@@ -46,9 +46,12 @@ mat-card.profile-card {
   flex: 1;
 }
 
-.info p,
+@media (min-width: 800px)
+{
+  .info p,
 .details p {
-  margin: 15px 0;
+  margin: 15px 47px;
+}
 }
 
 .info strong,
@@ -66,7 +69,7 @@ mat-tab-group {
   align-items: center;
   justify-content: flex-start; /* Align icons and text to the left */
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 19px;
   flex-wrap: wrap; /* Allow wrapping for better responsiveness */
 }
 
@@ -79,10 +82,10 @@ mat-tab-group {
 .icon-text span,
 .icon-text p {
   margin: 0;
-  font-size: 16px; /* Adjust font size for readability */
-  line-height: 1.5; /* Improves vertical spacing */
-  word-wrap: break-word; /* Ensures text wraps appropriately */
-  flex: 1; /* Allow text to take up available space */
+  font-size: 16px;
+  line-height: 1.5; 
+  word-wrap: break-word; 
+  flex: 1; 
 }
 
 strong {
@@ -104,51 +107,6 @@ button:hover {
   cursor: pointer;
 }
 
-@media (max-width: 850px) {
-  .main-container {
-    margin: 10px 15px; /* Reduced margin for smaller screens */
-    padding: 15px; /* Reduced padding for better use of space */
-  }
-
-  mat-card.profile-card {
-    padding: 10px; /* Reduce padding for the card */
-    margin-bottom: 15px; /* Adjust margin between cards for compact design */
-  }
-
-  .header {
-    display: block;
-    align-items: flex-start;
-  }
-
-  .profile-image img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .info,
-  .details {
-   margin-left: 280px;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-
-  .icon-text {
-   
-    gap: 10px; /* Adjust spacing for smaller viewports */
-  }
-
-  .icon-text mat-icon {
-    font-size: 20px; /* Reduce icon size on smaller screens */
-  }
-
-  .icon-text p,
-  .icon-text span {
-    font-size: 14px; /* Adjust text size for smaller screens */
-    word-wrap: break-word; /* Prevent text overflow */
-  }
-}
 
 
 .header-container {
@@ -203,4 +161,54 @@ button:hover {
 
 .arrow-icon {
   vertical-align: middle;
+}
+@media (max-width: 800px) {
+  .deti{
+    margin-left: -6px;
+
+  }
+  .profile-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px; 
+  }
+
+  .profile-image img {
+    width: 150px; /* Adjust image size */
+    height: 150px;
+    margin: 0; /* Center the image without extra margins */
+  }
+
+  .header {
+    flex-direction: column; /* Stack image and details vertically */
+    align-items: center; /* Center-align the content */
+    text-align: center; /* Ensure text is centered */
+  }
+
+  // .info, .details {
+  //   display: flex;
+  //   flex-direction: flex-start; /* Arrange items in a column */
+  //   align-items: center; /* Center-align the text */
+  //   margin: 10px 0; /* Add spacing between sections */
+  //   text-align: center; /* Align text to the center */
+  // }
+//   .info[_ngcontent-ng-c2469968527] {
+//     flex: 1;
+//     margin: 5px 10px;
+// }
+  .info p, .details p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .icon-text {
+    justify-content: center; /* Center-align icons and text */
+    gap: 5px; /* Reduce spacing between icon and text */
+  }
+  
+
+  .icon-text mat-icon {
+    font-size: 20px; /* Adjust icon size for smaller screens */
+  }
 }

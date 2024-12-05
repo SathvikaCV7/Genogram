@@ -19,7 +19,7 @@
       <div class="profile-image" >
         <img [src]="image ? image : 'assets/images/noimage.jpg'" alt="Child Image" class="child-image" />
       </div>
-      <div class="info">
+      <div class="details">
         <p>
           <span class="icon-text">
             <mat-icon>child_care</mat-icon> <strong>Name:</strong> {{ child?.name }}<a (click)="onEditChild(child)"><mat-icon>edit</mat-icon></a>
@@ -36,7 +36,7 @@
         </p>
       </div>
       <div class="details">
-        <p>
+        <p class="deti">
           <span class="icon-text">
             <mat-icon>flag</mat-icon> <strong>Nationality:</strong> {{ child?.nationality }}
           </span>
@@ -46,7 +46,7 @@
           </span>
           <br />
           <span class="icon-text">
-            <mat-icon>calendar_today</mat-icon> <strong>Date of Birth:</strong> {{ child?.dateOfBirth }}
+            <mat-icon>calendar_today</mat-icon> <strong>DOB:</strong> {{ child?.dateOfBirth }}
           </span>
         </p>
       </div>

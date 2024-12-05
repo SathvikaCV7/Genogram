@@ -87,7 +87,10 @@ export class ShowGenogramComponent {
         label: label,
         dimension: { width: nodeWidth, height: nodeHeight },
         icon: primary? 'assets/images/primary_contact.svg':'assets/images/user.svg',
-        primary:primary
+        primary:primary,
+        bgcolor:primary? '#83663B': '#d3c0aa',
+        bcolor:primary?'#041623':'#19485F',
+        color:primary? '#041623':'#19485F'
       });
   
       const isAbove = ['grandfather', 'grandmother', 'guardian'].includes(relationshipType);

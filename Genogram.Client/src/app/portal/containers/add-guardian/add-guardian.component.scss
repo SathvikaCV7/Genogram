@@ -28,11 +28,9 @@
   width: 100%;
 }
 .cncle-btn{
-  padding-left: 17px;
-    width: 289px;
+    width: 292px;
 }
 .sbt-btn{
-  padding-right: 17px;
   width: 292px;
 }
 mat-dialog-actions button {
@@ -51,10 +49,16 @@ padding: 25px !important;
 .preview-img{
 height:150px;
 width:258px;
-
 }
 
 mat-card{
 height: 269px;
 }
 
+@media(max-width:850px){
+  .cncle-btn,.sbt-btn{
+    width: -webkit-fill-available;
+    margin-bottom: 10px;
+
+  }
+}

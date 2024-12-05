@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Date of Birth</mat-label>
               <input matInput [matDatepicker]="myDatePicker" formControlName="dateOfBirth" />
@@ -58,7 +58,7 @@
               <mat-error *ngIf="form.get('dateOfBirth')?.hasError('required')">Date of Birth is required</mat-error>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div class="col-lg-6">
            
 
             <div *ngIf="!base64Image">
@@ -74,7 +74,7 @@
             </div>
 
             <div *ngIf="base64Image" class="image-preview">
-              <button mat-icon-button class="close-btn"  (click)="removeImage()">
+              <button  class="close-btn"  (click)="removeImage()">
                 <mat-icon>close</mat-icon>
               </button>
               <img [src]="base64Image" alt="Selected Image" class="preview-img" />

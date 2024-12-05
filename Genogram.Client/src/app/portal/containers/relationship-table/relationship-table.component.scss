@@ -28,6 +28,41 @@
   max-width: 250px; 
 }
 
+.mat-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Add spacing between icon and text */
+  padding: 8px 16px; /* Adjust padding for consistency */
+}
+
+.mat-menu-item mat-icon {
+  font-size: 20px; /* Ensure icon size is consistent */
+  color: #19485F !important; /* Set color for consistency */
+}
+
+.mat-menu-item .edit-text,
+.mat-menu-item .del-text {
+  display: inline-block; /* Ensure text and icon align side-by-side */
+  /* Adjust text color */
+  font-size: 14px; /* Set a consistent font size */
+  margin: 0; /* Remove default margin */
+}
+
+.edit-text{
+  color:#19485F !important;
+}
+.del-text {
+  color: #d32f2f !important; /* Red color for delete action */
+}
+
+.more_verti {
+  display: flex;
+  align-items: center; /* Align the "more_vert" button properly */
+  justify-content: center;
+  padding: 4px; /* Reduce padding for better alignment */
+}
+
+
 .small-search-input {
   width: 100%;
 }
@@ -57,6 +92,8 @@ th {
   color: #19485F;
 }
 
+
+
 @media (max-width: 850px) {
   .button-group {
     flex-direction: column; /* Stack buttons vertically */
@@ -64,15 +101,24 @@ th {
     gap: 15px; /* Reduce spacing between buttons */
     margin: 15px 0;
   }
-
-  .button-group button {
-    width: 100%; /* Buttons take full width of their container */
-    max-width: none; /* Remove maximum width restriction */
-    padding: 12px 20px; /* Increase padding slightly for better touch targets */
-    font-size: 16px; /* Keep font size consistent */
+  table.mat-elevation-z8 {
+    width: 100%; /* Maintain responsiveness */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    display: block; /* Ensure proper rendering on smaller screens */
   }
 
-  .button-group mat-icon {
-    margin-right: 8px; /* Maintain spacing for icons */
+  /* Adjust table container for better responsiveness */
+  .mat-elevation-z8::-webkit-scrollbar {
+    height: 8px; /* Customize scrollbar height */
+  }
+
+  .mat-elevation-z8::-webkit-scrollbar-thumb {
+    background-color: #19485F; /* Color of scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for scrollbar */
+  }
+
+  .mat-elevation-z8::-webkit-scrollbar-track {
+    background: #d3c0aa; /* Background of scrollbar track */
   }
 }
+

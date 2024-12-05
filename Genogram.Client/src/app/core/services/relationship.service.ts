@@ -13,12 +13,12 @@ export class RelationshipService {
   baseApiUrl= environment.baseApiUrl;
 
   addRelationship(result:Relationship){
-    debugger;
+   
     return this.http.post<Relationship>(this.baseApiUrl+"relationship/Add",result)
   }
 
   updateRelationship(result:Relationship){
-    debugger;
+   
     return this.http.post<Relationship>(this.baseApiUrl+"relationship/edit",result)
   }
 

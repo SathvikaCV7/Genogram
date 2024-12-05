@@ -34,7 +34,6 @@ export class ChildDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     const childId = this.route.snapshot.paramMap.get('childId')|| '1';
-    debugger;
     this.childDetailsService.getChild(childId).subscribe((child)=>{
       this.child = child;
       this.childId=child.id;
@@ -45,7 +44,6 @@ export class ChildDetailsComponent implements OnInit {
   }
 
   onEditChild(child: Child|undefined): void {
-    debugger;
     const originalData = { ...child }; 
     const dialogRef = this.dialog.open(AddOrEditChildComponent, {
       width: '600px',
@@ -57,7 +55,6 @@ export class ChildDetailsComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-       debugger;
        const date = new Date(result.dateOfBirth);
        const year = date.getFullYear();
        const month = String(date.getMonth()+1).padStart(2, "0");
@@ -72,7 +69,6 @@ export class ChildDetailsComponent implements OnInit {
           'image'
         ];
         const isChanged = fieldsToCompare.some(key => originalData[key] !== result[key]);
-        debugger;
         if(result.image){
           this.image=result.image;
           console.log(this.image);

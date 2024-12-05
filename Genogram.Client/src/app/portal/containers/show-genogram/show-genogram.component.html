@@ -15,17 +15,15 @@
     <svg:marker id="arrow-reverse" viewBox="0 -5 10 10" refX="0" refY="0" markerWidth="4" markerHeight="4" orient="auto">
   <svg:path d="M10,-5L0,0L10,5" class="arrow-head" />
 </svg:marker>
-    
-    
     </ng-template>
  
     <ng-template #nodeTemplate let-node>
       <svg:g class="node">
         <rect [attr.width]="node.dimension?.width"
               [attr.height]="node.dimension?.height || 60"
-              [attr.fill]="node.id === 'child' || node.primary===true  ? '#19485F' : '#d3c0aa'"
+              [attr.fill]="node.id === 'child'  ? '#19485F' : node.bgcolor"
               rx="5" ry="5"
-              [attr.stroke]="node.id === 'child'  || node.primary===true ? '#d3c0aa' : '#19485F'"
+              [attr.stroke]="node.id === 'child' ? '#d3c0aa' : node.bcolor"
               stroke-width="2">
         </rect>
    
@@ -38,7 +36,7 @@
         height="20"
       ></svg:image>
    
-      <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2"  [attr.fill]="node.id === 'child'  || node.primary===true ? '#d3c0aa' : '#19485F'">
+      <svg:text alignment-baseline="central" [attr.x]="30" [attr.y]="node.dimension.height / 2"  [attr.fill]="node.id === 'child'  ? '#d3c0aa' : node.color">
         {{ node.label }}
       </svg:text>
       </svg:g>
@@ -51,6 +49,7 @@
       <svg:text class="edge-label"  text-anchor="middle">
         <textPath
           class="text-path"
+         
           [attr.href]="'#' + link.id"
           [style.dominant-baseline]="link.dominantBaseline"
           [attr.startOffset]="link.customPath? '25%' : '65%'"

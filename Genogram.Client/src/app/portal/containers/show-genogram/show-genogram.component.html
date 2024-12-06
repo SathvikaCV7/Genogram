@@ -3,6 +3,16 @@
     <h1>Genogram - {{childName}}</h1>
     <mat-icon class="close-icon" (click)="closeGenogram()">close</mat-icon>
   </mat-card>
+  <div class="legend-container">
+    <div class="representation">
+      <div class="represent-1" *ngFor="let legend of legends">
+        <div class="represent-color" [style.backgroundColor]="legend.color" [style.backgroundImage]="'url(' + legend.icon + ')'" ></div>
+        <p>{{ legend.label }}</p>
+      </div>
+    </div>
+  </div>
+  
+  
   
   <div class="genogram-graph" >
 

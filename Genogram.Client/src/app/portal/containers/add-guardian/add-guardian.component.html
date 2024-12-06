@@ -7,7 +7,7 @@
       <form [formGroup]="form" >
         <div class="row">
           <div class="col-lg-6">
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline" >
               <mat-label>First Name</mat-label>
               <input matInput formControlName="firstName" />
               <mat-error *ngIf="form.get('firstName')?.errors && form.get('firstName')?.touched">
@@ -27,7 +27,7 @@
           </div>
 
           <div class="col-lg-6">
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline" >
               <mat-label>Last Name</mat-label>
               <input matInput formControlName="lastName" />
               <mat-error *ngIf="form.get('lastName')?.hasError('required')">
@@ -39,7 +39,7 @@
         </div>
         <div class="row">
           <div class="col-lg-6">
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline" >
               <mat-label>Relationship</mat-label>
               <mat-select formControlName="relationshipType">
                 <mat-option *ngFor="let relationship of relationshipTypes" [value]="relationship"
@@ -55,7 +55,7 @@
           </div>
 
           <div class="col-lg-6">
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline" >
               <mat-label>Email</mat-label>
               <input matInput type="email" formControlName="email" />
               <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.touched">
@@ -68,7 +68,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline" >
               <mat-label>Phone Number</mat-label>
               <input matInput formControlName="phoneNumber" />
               <mat-error *ngIf="form.get('phoneNumber')?.errors && form.get('phoneNumber')?.touched">
@@ -82,7 +82,7 @@
           <div class="col-md-6">
            
 
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width form-field" appearance="outline">
               <mat-label>Remarks</mat-label>
                <textarea matInput formControlName="remarks" rows="1"></textarea>
             </mat-form-field>

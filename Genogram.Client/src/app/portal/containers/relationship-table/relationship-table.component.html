@@ -7,6 +7,18 @@
     <mat-icon>zoom_out_map</mat-icon>
     Genogram
   </button>
+  
+  <div  class="containerSearch">
+    <mat-form-field appearance="outline" style="width: 100%;" class="search-height">
+    <mat-icon class="icon-padding" matPrefix>search</mat-icon>
+    <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Search"
+          style="font-size: 18px; color: #19485F !important;"
+        />
+    </mat-form-field>
+    </div>
 </div>
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>

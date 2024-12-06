@@ -23,3 +23,129 @@ mat-card{
 //  width: calc(100% - 10px);
 
 }
+
+.legend-container {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px; /* Adds spacing from the genogram graph */
+  align-items: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #000; /* Optional: Border for better visibility */
+}
+
+.legend-label {
+  font-size: 14px;
+  color: #19485F;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack legend and graph */
+}
+
+.legend-container {
+  order: -1; /* Places legend above the graph */
+}
+
+.genogram-graph {
+  margin-top: 16px;
+}
+p{
+  margin-top: 11px;
+}
+.legend-container {
+  position: absolute;
+  top: 71px;
+  right: 21px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a box-shadow */
+  
+}
+
+
+.representation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 150px;
+  height: auto;
+}
+
+.represent-1 {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.represent-color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+   /* Optional: Border for better visibility */
+}
+
+.represent-1 p {
+  width: -webkit-fill-available !important;
+  padding-left: 10px;
+}
+
+.represent-2 p {
+  width: -webkit-fill-available !important;
+  padding-left: 10px;
+}
+
+.represent-2 {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.represent-2-color {
+  width: 15px;
+  height: 15px;
+  background-color: #8dbfeb; /* Primary color */
+  margin-top: 2px;
+  border-radius: 50%;
+}
+
+.represent-3 p {
+  width: -webkit-fill-available !important;
+  padding-left: 10px;
+}
+
+.represent-3 {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.represent-3-color {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(241, 202, 222); /* Relations color */
+  margin-top: 2px;
+  border-radius: 50%;
+}

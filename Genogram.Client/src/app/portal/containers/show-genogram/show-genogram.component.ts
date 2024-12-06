@@ -35,6 +35,12 @@ export class ShowGenogramComponent {
   relationshipTypeCount: { [key: string]: number } = {};
   parents: any[] = [];
 
+  legends = [
+    { label: 'Child', color: '#19485F', icon: 'assets/images/child.svg' },
+    { label: 'Primary Contact', color: '#b8d2dd', icon: 'assets/images/primary_contact.svg' },
+    { label: 'Relations', color: '#d3c0aa', icon: 'assets/images/user.svg' },
+  ];
+
   initializeGenogram() {
     const padding = 30;
     const childWidth = this.calculateTextWidth(this.childName) + padding;
@@ -88,7 +94,7 @@ export class ShowGenogramComponent {
         dimension: { width: nodeWidth, height: nodeHeight },
         icon: primary? 'assets/images/primary_contact.svg':'assets/images/user.svg',
         primary:primary,
-        bgcolor:primary? '#83663B': '#d3c0aa',
+        bgcolor:primary? '#b8d2dd': '#d3c0aa',
         bcolor:primary?'#041623':'#19485F',
         color:primary? '#041623':'#19485F'
       });
@@ -145,7 +151,7 @@ export class ShowGenogramComponent {
 
   layoutSettings = {
     orientation: 'TB', 
-    edgePadding: 40,   
+    edgePadding: 10,   
     rankPadding: 100, 
     nodePadding: 50    
   };

@@ -17,6 +17,8 @@ import { RemarksDialogComponent } from '../remarks-dialog/remarks-dialog.compone
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-relationship-table',
@@ -31,6 +33,9 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
     MatIconModule,
     MatSortModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   templateUrl: './relationship-table.component.html',
   styleUrl: './relationship-table.component.scss',
@@ -75,10 +80,6 @@ export class RelationshipTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 
   onAdd(): void {
     if (this.childId != undefined) {
@@ -168,8 +169,8 @@ export class RelationshipTableComponent implements OnInit {
   onGenogram(): void {
     if (this.childId != undefined) {
       this.dialog.open(ShowGenogramComponent, {
-        width: '850px',
-        height: '590px',
+        width: '950px',
+        height: '650px',
         data: {
           relationships: this.dataSource.data,
           childId: this.childId,
@@ -218,4 +219,10 @@ export class RelationshipTableComponent implements OnInit {
     );
     return foundRelationship ? foundRelationship.id : undefined;
   }
+
+  applyFilter(event:Event){
+    const filterValue=(event.target as HTMLInputElement)?.value || '';
+    this.dataSource.filter=filterValue.trim().toLocaleLowerCase();
+  }
+  
 }

@@ -3,16 +3,17 @@
     <mat-icon style="background-color: #19485F; color: #d3c0aa;">add</mat-icon>
     Add Relationship
   </button>
-  <button mat-raised-button style="color: #19485F; background-color: #d3c0aa;" class="genogram-button" (click)="onGenogram()">
+  <button mat-raised-button style="color: #19485F; background-color: #d3c0aa;" class="genogram-button" [disabled]="relationships.length==0" (click)="onGenogram()">
     <mat-icon>zoom_out_map</mat-icon>
     Genogram
   </button>
   
-  <div  class="containerSearch">
-    <mat-form-field appearance="outline" style="width: 100%;" class="search-height">
+  <div  class="containerSearch"  *ngIf="relationships.length!=0">
+    <mat-form-field appearance="outline" style="width: 100%;" class="search-height" >
     <mat-icon class="icon-padding" matPrefix>search</mat-icon>
     <input
           matInput
+         
           (keyup)="applyFilter($event)"
           placeholder="Search"
           style="font-size: 18px; color: #19485F !important;"
